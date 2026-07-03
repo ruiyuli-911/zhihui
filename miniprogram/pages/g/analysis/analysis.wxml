@@ -1,0 +1,31 @@
+<view class="analysis-page">
+  <view class="analysis-section">
+    <text class="analysis-title">就业数据统计</text>
+    <view class="analysis-grid">
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.totalJobs || '-'}}</text>
+        <text class="analysis-lbl">岗位总数</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.activeJobs || '-'}}</text>
+        <text class="analysis-lbl">招聘中岗位</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.totalApplications || '-'}}</text>
+        <text class="analysis-lbl">报名总人次</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.acceptedApplications || '-'}}</text>
+        <text class="analysis-lbl">已录取</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.totalJobseekers || '-'}}</text>
+        <text class="analysis-lbl">求职者</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-num">{{data.totalCompanies || '-'}}</text>
+        <text class="analysis-lbl">企业</text>
+      </view>
+    </view>
+  </view>
+</view>

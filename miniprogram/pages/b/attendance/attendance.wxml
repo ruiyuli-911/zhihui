@@ -1,0 +1,15 @@
+<view class="attendance-page">
+  <view class="attendance-list" wx:if="{{list.length > 0}}">
+    <view class="attendance-item" wx:for="{{list}}" wx:key="_id" wx:for-item="c">
+      <view class="attendance-item__top">
+        <text class="attendance-item__name">{{c.jobseekerName}}</text>
+        <text class="attendance-item__time">{{formatTime(c.checkinTime)}}</text>
+      </view>
+      <text class="attendance-item__phone">{{c.jobseekerPhone}}</text>
+      <text class="attendance-item__meta">{{c.jobTitle}} · {{c.date}}</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无签到记录</text>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="fav-page">
+    <view class="fav-list" wx:if="{{list.length > 0}}">
+      <view class="fav-item" wx:for="{{list}}" wx:key="_id" wx:for-item="item">
+        <view class="fav-item__info" bindtap="handleTap" data-id="{{item.jobId}}">
+          <text class="fav-item__title">{{item.jobTitle}}</text>
+          <text class="fav-item__company">{{item.companyName}}</text>
+          <text class="fav-item__salary">{{item.salary}}</text>
+        </view>
+        <text
+          class="fav-item__del"
+          bindtap="handleRemove"
+          data-job-id="{{item.jobId}}"
+          data-title="{{item.jobTitle}}"
+        >
+          取消收藏
+        </text>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-state__text">还没有收藏的岗位</text>
+    </view>
+  </view>
+</framework-page>

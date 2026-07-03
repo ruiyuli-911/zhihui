@@ -1,0 +1,15 @@
+<view class="checkin-list-page">
+  <view class="checkin-list" wx:if="{{list.length > 0}}">
+    <view class="checkin-item" wx:for="{{list}}" wx:key="_id" wx:for-item="c">
+      <view class="checkin-item__top">
+        <text class="checkin-item__title">{{c.jobTitle}}</text>
+        <text class="checkin-item__time">{{formatTime(c.checkinTime)}}</text>
+      </view>
+      <text class="checkin-item__company">{{c.companyName}}</text>
+      <text class="checkin-item__date">{{c.date}}</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无签到记录</text>
+  </view>
+</view>

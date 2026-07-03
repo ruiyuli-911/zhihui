@@ -1,0 +1,39 @@
+.detail-page { padding-bottom: 80px; }
+.detail-header { background: #fff; padding: 20px 16px; margin-bottom: 12px; }
+.detail-header__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.detail-header__title-row { display: flex; align-items: center; gap: 8px; flex: 1; }
+.detail-header__title { color: #333; font-size: 22px; font-weight: 700; }
+.hot-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #ff4d4f; color: #fff; font-size: 12px; font-weight: 600; line-height: 20px; }
+.detail-header__salary { color: #f5a623; font-size: 20px; font-weight: 700; white-space: nowrap; }
+.detail-header__company { display: block; color: #333; font-size: 15px; margin-bottom: 10px; }
+.detail-header__tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag-item { display: inline-block; padding: 4px 12px; border-radius: 4px; background: #f0fdf8; color: #12ae85; font-size: 13px; }
+.detail-section { background: #fff; padding: 16px; margin-bottom: 12px; }
+.detail-section__title { display: block; color: #333; font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+.detail-section__content { display: block; color: #666; font-size: 14px; line-height: 1.6; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.info-item__label { display: block; color: #999; font-size: 13px; margin-bottom: 2px; }
+.info-item__value { display: block; color: #333; font-size: 14px; }
+
+.detail-footer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center;
+  padding: 12px 16px; background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  gap: 12px;
+}
+.detail-footer__left { flex-shrink: 0; }
+.btn-fav {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 8px; background: #f5f5f5;
+}
+.btn-fav:active { opacity: 0.7; }
+.btn-fav--active { background: #fff2f0; }
+.btn-fav__icon { font-size: 20px; line-height: 1; color: #ff4d4f; }
+.btn-fav__text { font-size: 10px; color: #666; margin-top: 2px; }
+.btn-fav--active .btn-fav__text { color: #ff4d4f; }
+
+.btn-apply { flex: 1; height: 48px; line-height: 48px; border-radius: 24px; background: #12ae85; color: #fff; font-size: 16px; font-weight: 600; text-align: center; border: none; }
+.btn-apply:active { opacity: 0.9; }
+.loading-state { display: flex; justify-content: center; padding: 60px 0; }
+.loading-state__text { color: #999; font-size: 15px; }

@@ -1,0 +1,7 @@
+<view class="framework-page">
+  <view class="framework-page__header">
+    <text class="framework-page__title">{{title}}</text>
+    <text class="framework-page__badge">{{role}}</text>
+  </view>
+  <slot />
+</view>

@@ -1,0 +1,8 @@
+.enterprise-page { padding: 16px; }
+.enterprise-list { display: flex; flex-direction: column; gap: 12px; }
+.enterprise-item { background: #fff; border-radius: 12px; padding: 14px 16px; }
+.enterprise-item__name { display: block; font-size: 16px; font-weight: 600; color: #333; }
+.enterprise-item__contact { display: block; font-size: 14px; color: #666; margin-top: 4px; }
+.enterprise-item__time { display: block; font-size: 13px; color: #999; margin-top: 4px; }
+.empty-state { display: flex; justify-content: center; padding: 60px 0; }
+.empty-state__text { color: #999; font-size: 15px; }

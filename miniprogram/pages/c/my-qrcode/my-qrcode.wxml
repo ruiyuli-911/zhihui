@@ -1,0 +1,19 @@
+<view class="qrcode-page">
+  <view class="qrcode-list" wx:if="{{list.length > 0}}">
+    <view class="qrcode-card" wx:for="{{list}}" wx:key="applicationId" wx:for-item="item">
+      <view class="qrcode-card__info">
+        <text class="qrcode-card__title">{{item.jobTitle}}</text>
+        <text class="qrcode-card__company">{{item.companyName}}</text>
+      </view>
+      <view class="qrcode-card__code">
+        <image wx:if="{{item.qrFileID}}" class="qrcode-img" src="{{item.qrFileID}}" mode="aspectFit" />
+        <text wx:elif="{{item.checkedIn}}" class="qrcode-done">✅ 今日已签到</text>
+        <text wx:else class="qrcode-hint">加载中...</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无可签到的岗位</text>
+  </view>
+</view>

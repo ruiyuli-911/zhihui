@@ -1,0 +1,10 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "Admin cloud function scaffold",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^3.0.4",
+    "xlsx": "^0.18.5"
+  }
+}

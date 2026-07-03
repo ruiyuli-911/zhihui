@@ -1,0 +1,54 @@
+<view class="jobs-page">
+  <view class="jobs-header">
+    <text class="jobs-count">共 {{total}} 个岗位</text>
+    <button class="btn-publish" bindtap="handlePublish">+ 发布岗位</button>
+  </view>
+
+  <view class="jobs-list" wx:if="{{jobs.length}}">
+    <view class="job-item" wx:for="{{jobs}}" wx:key="_id" wx:for-item="job">
+      <view class="job-item__top">
+        <view class="job-item__title-row">
+          <text class="job-item__title">{{job.title}}</text>
+          <text class="tag tag--{{job.auditStatus}}">{{auditStatusText[job.auditStatus]}}</text>
+        </view>
+        <text class="job-item__salary">{{formatSalary(job)}}</text>
+      </view>
+
+      <text class="job-item__meta">{{job.companyName}} · {{job.area}}</text>
+      <text class="job-item__meta">报名 {{job.applyCount || 0}} 人 · 浏览 {{job.viewCount || 0}} 次</text>
+
+      <view class="job-item__reject job-item__reject--revoked" wx:if="{{job.auditStatus === 'revoked' && job.auditMsg}}">
+        <text class="reject-label reject-label--revoked">{{getAuditReasonLabel(job.auditStatus)}}</text>
+        <text class="reject-msg reject-msg--revoked">{{job.auditMsg}}</text>
+      </view>
+
+      <view class="job-item__reject" wx:elif="{{job.auditStatus === 'rejected' && job.auditMsg}}">
+        <text class="reject-label">{{getAuditReasonLabel(job.auditStatus)}}</text>
+        <text class="reject-msg">{{job.auditMsg}}</text>
+      </view>
+
+      <view class="job-item__tags">
+        <text class="tag tag--hot" wx:if="{{job.isHot}}">热门</text>
+        <text class="tag tag--status" wx:if="{{job.recruitStatus === 'recruiting'}}">招聘中</text>
+        <text class="tag tag--closed" wx:elif="{{job.recruitStatus !== 'recruiting'}}">已停止</text>
+      </view>
+
+      <view class="job-item__actions">
+        <text
+          class="action-btn"
+          wx:if="{{job.auditStatus === 'pending' || job.auditStatus === 'rejected' || job.auditStatus === 'revoked'}}"
+          bindtap="handleEdit"
+          data-id="{{job._id}}"
+        >
+          编辑修改
+        </text>
+        <text class="action-btn action-btn--danger" bindtap="handleDelete" data-id="{{job._id}}">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">还没有发布过岗位</text>
+    <button class="btn-publish-empty" bindtap="handlePublish">立即发布</button>
+  </view>
+</view>

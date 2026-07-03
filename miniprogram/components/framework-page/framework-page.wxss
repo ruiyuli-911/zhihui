@@ -1,0 +1,24 @@
+.framework-page {
+  padding-top: var(--spacing-lg, 16px);
+}
+
+.framework-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 12px;
+}
+
+.framework-page__title {
+  font-size: var(--font-xl, 20px);
+  font-weight: 600;
+  color: var(--text-primary, #333333);
+}
+
+.framework-page__badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-primary-light, #e8f8f3);
+  color: var(--color-primary, #12ae85);
+  font-size: var(--font-sm, 14px);
+}

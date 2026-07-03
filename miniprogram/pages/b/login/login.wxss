@@ -1,0 +1,77 @@
+.blogin-page {
+  min-height: 100vh;
+  padding: 32px 20px;
+  background: #f6f8fb;
+}
+
+.blogin-header {
+  margin-bottom: 20px;
+}
+
+.blogin-title {
+  display: block;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.blogin-desc {
+  display: block;
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.blogin-card {
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.blogin-field + .blogin-field {
+  margin-top: 16px;
+}
+
+.blogin-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.blogin-input {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-size: 15px;
+}
+
+.blogin-btn {
+  margin-top: 20px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 24px;
+  background: #12ae85;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+}
+
+.blogin-btn:active {
+  opacity: 0.9;
+}
+
+.blogin-hint {
+  display: block;
+  margin-top: 14px;
+  color: #9ca3af;
+  font-size: 12px;
+  line-height: 1.7;
+}

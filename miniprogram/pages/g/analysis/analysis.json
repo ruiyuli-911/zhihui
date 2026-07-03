@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "framework-page": "/components/framework-page/framework-page"
+  }
+}

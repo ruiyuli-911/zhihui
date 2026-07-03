@@ -1,0 +1,52 @@
+page {
+  --color-primary: #12ae85;
+  --color-primary-dark: #0e8f6d;
+  --color-primary-light: #e8f8f3;
+  --color-primary-gradient: linear-gradient(135deg, #12ae85, #0e8f6d);
+
+  --color-orange: #f5a623;
+  --color-orange-light: #fff3e0;
+
+  --color-success: #4caf50;
+  --color-danger: #e53935;
+  --color-warning: #ff9800;
+  --color-info: #2196f3;
+
+  --color-white: #ffffff;
+  --color-bg: #f5f7fa;
+  --color-card: #ffffff;
+  --color-divider: #e8e8e8;
+  --color-border: #eeeeee;
+
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-hint: #999999;
+  --text-white: #ffffff;
+  --text-link: #2196f3;
+
+  --font-xxl: 22px;
+  --font-xl: 20px;
+  --font-lg: 18px;
+  --font-base: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-round: 50%;
+
+  --btn-height-lg: 48px;
+  --btn-height-md: 44px;
+  --btn-height-sm: 36px;
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-btn: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

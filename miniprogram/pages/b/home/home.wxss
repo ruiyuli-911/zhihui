@@ -1,0 +1,98 @@
+.bhome-page {
+  padding: 16px;
+}
+
+.bhome-header {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.bhome-greeting {
+  display: block;
+  color: var(--text-primary, #333333);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.bhome-subtitle {
+  display: block;
+  color: var(--text-secondary, #666666);
+  font-size: 14px;
+}
+
+.bhome-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.bhome-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 14px;
+  text-align: center;
+}
+
+.bhome-card:active {
+  opacity: 0.85;
+}
+
+.bhome-card__icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.bhome-card__title {
+  display: block;
+  color: var(--text-primary, #333333);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.bhome-card__desc {
+  display: block;
+  color: var(--text-hint, #999999);
+  font-size: 12px;
+}
+
+.bhome-tip {
+  background: #f0fdf8;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.bhome-tip__title {
+  display: block;
+  color: var(--text-primary, #333333);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.bhome-tip__step {
+  display: block;
+  color: var(--text-secondary, #666666);
+  font-size: 13px;
+  line-height: 26px;
+}
+
+.bhome-footer {
+  text-align: center;
+}
+
+.bhome-back {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 24px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  color: var(--text-secondary, #666666);
+  font-size: 14px;
+  border: none;
+}

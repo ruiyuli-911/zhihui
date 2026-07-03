@@ -1,0 +1,92 @@
+.apply-page {
+  padding: 16px;
+}
+
+.apply-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.apply-card__title {
+  display: block;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.job-summary {
+  padding: 12px;
+  background: #f8fbfa;
+  border-radius: 8px;
+  border: 1px solid #edf2ef;
+}
+
+.job-summary__name {
+  display: block;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.job-summary__company {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.job-summary__salary {
+  display: block;
+  color: #f5a623;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row__label {
+  color: #999;
+  font-size: 14px;
+  width: 70px;
+}
+
+.info-row__value {
+  color: #333;
+  font-size: 15px;
+  flex: 1;
+}
+
+.apply-actions {
+  margin-top: 24px;
+  padding-bottom: 32px;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 24px;
+  background: #12ae85;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+}
+
+.btn-submit:active {
+  opacity: 0.9;
+}

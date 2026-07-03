@@ -1,0 +1,71 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="blogin-page">
+    <view class="blogin-header">
+      <text class="blogin-title">企业登录</text>
+      <text class="blogin-desc">先绑定企业身份，再进入岗位管理和报名查看。</text>
+    </view>
+
+    <view class="blogin-card">
+      <view class="blogin-field">
+        <text class="blogin-label">企业名称</text>
+        <input
+          class="blogin-input"
+          placeholder="请输入企业名称"
+          value="{{form.companyName}}"
+          bindinput="onCompanyNameInput"
+        />
+      </view>
+
+      <view class="blogin-field">
+        <text class="blogin-label">联系电话</text>
+        <input
+          class="blogin-input"
+          type="number"
+          maxlength="11"
+          placeholder="请输入联系电话"
+          value="{{form.phone}}"
+          bindinput="onPhoneInput"
+        />
+      </view>
+
+      <view class="blogin-field">
+        <text class="blogin-label">联系人</text>
+        <input
+          class="blogin-input"
+          placeholder="选填，方便后续识别"
+          value="{{form.contactName}}"
+          bindinput="onContactNameInput"
+        />
+      </view>
+
+      <view class="blogin-field blogin-code-field">
+        <text class="blogin-label">验证码</text>
+        <view class="blogin-code-row">
+          <input
+            class="blogin-input blogin-code-input"
+            type="number"
+            maxlength="6"
+            placeholder="请输入验证码"
+            value="{{form.code}}"
+            bindinput="onCodeInput"
+          />
+          <button
+            class="blogin-code-btn"
+            bindtap="handleSendCode"
+            disabled="{{sendingCode}}"
+          >{{codeText}}</button>
+        </view>
+      </view>
+    </view>
+
+    <button class="blogin-btn" bindtap="handleLogin" loading="{{logging}}" disabled="{{logging}}">
+      进入企业端
+    </button>
+
+    <text class="blogin-hint">如果当前微信之前只登录过求职者端，先在这里完成一次企业身份绑定。</text>
+  </view>
+</framework-page>

@@ -1,0 +1,18 @@
+<view class="scan-page">
+  <view class="scan-card" wx:if="{{!result}}">
+    <text class="scan-title">扫码核销</text>
+    <text class="scan-desc">扫描求职者展示的二维码完成签到</text>
+    <view class="scan-btn-area" bindtap="handleScan">
+      <view class="scan-btn">
+        <text class="scan-btn__icon">📷</text>
+        <text class="scan-btn__text">开始扫码</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="result-card" wx:if="{{result}}">
+    <text class="result-title">{{result.success ? '✅ 签到成功' : '❌ 签到失败'}}</text>
+    <text class="result-msg">{{result.msg}}</text>
+    <button class="result-btn" bindtap="handleReset">继续扫码</button>
+  </view>
+</view>

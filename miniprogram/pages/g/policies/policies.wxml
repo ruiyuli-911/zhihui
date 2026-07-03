@@ -1,0 +1,40 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="policy-page">
+    <view class="policy-header">
+      <text class="policy-title">政策管理</text>
+      <button class="policy-add-btn" bindtap="handleAdd">+ 发布政策</button>
+    </view>
+
+    <view class="policy-list" wx:if="{{list.length > 0}}">
+      <view class="policy-item" wx:for="{{list}}" wx:key="_id" wx:for-item="item">
+        <view class="policy-item__top">
+          <text class="policy-item__title">{{item.title}}</text>
+          <text class="policy-item__time">{{item.displayCreatedAt}}</text>
+        </view>
+        <text class="policy-item__content">{{item.content}}</text>
+        <view class="policy-item__actions">
+          <text class="policy-del" bindtap="handleDelete" data-id="{{item._id}}" data-title="{{item.title}}">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-state__text">暂无政策</text>
+    </view>
+
+    <view class="modal-mask" wx:if="{{showModal}}" bindtap="closeModal"></view>
+    <view class="modal" wx:if="{{showModal}}">
+      <text class="modal-title">{{editId ? '编辑政策' : '发布政策'}}</text>
+      <input class="modal-input" placeholder="政策标题" value="{{editTitle}}" bindinput="onTitleInput" />
+      <textarea class="modal-textarea" placeholder="政策内容" value="{{editContent}}" bindinput="onContentInput" />
+      <view class="modal-actions">
+        <button class="modal-cancel" bindtap="closeModal">取消</button>
+        <button class="modal-confirm" bindtap="handleSave" loading="{{saving}}" disabled="{{saving}}">保存</button>
+      </view>
+    </view>
+  </view>
+</framework-page>

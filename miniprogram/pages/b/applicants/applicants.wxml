@@ -1,0 +1,31 @@
+<view class="applicants-page">
+  <view class="filter-bar">
+    <picker mode="selector" range="{{jobOptions}}" value="{{selectedJobIndex}}" bindchange="onJobChange">
+      <view class="picker-box">{{selectedJobName || '全部岗位'}}</view>
+    </picker>
+  </view>
+
+  <view class="applicants-list" wx:if="{{list.length > 0}}">
+    <view class="applicant-item" wx:for="{{list}}" wx:key="_id" wx:for-item="app">
+      <view class="applicant-item__top">
+        <text class="applicant-item__name">{{app.jobseekerName}}</text>
+        <text class="status-tag status-tag--{{app.status}}">{{statusText[app.status]}}</text>
+      </view>
+      <text class="applicant-item__phone">{{app.jobseekerPhone}}</text>
+      <text class="applicant-item__meta">{{app.jobTitle}} · {{formatTime(app.applyTime)}}</text>
+
+      <view class="applicant-item__actions" wx:if="{{app.status === 'submitted'}}">
+        <button class="btn-action btn-action--approve" bindtap="handleAccept" data-id="{{app._id}}">录取</button>
+        <button class="btn-action btn-action--reject" bindtap="handleReject" data-id="{{app._id}}">拒绝</button>
+      </view>
+
+      <view class="applicant-item__remark" wx:if="{{app.remarks}}">
+        <text>备注：{{app.remarks}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无报名</text>
+  </view>
+</view>

@@ -1,0 +1,78 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="publish-page">
+    <view class="form-section">
+      <view class="form-group">
+        <text class="form-label">岗位名称 <text class="required">*</text></text>
+        <input class="form-input" placeholder="例如：采摘工" value="{{form.title}}" bindinput="onTitleInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">工种分类</text>
+        <picker class="form-input" mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+          <view class="picker-value">{{form.categoryName || '请选择工种分类'}}</view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">详细地址</text>
+        <input class="form-input" placeholder="例如：xx省xx市xx区" value="{{form.address}}" bindinput="onAddressInput" />
+      </view>
+
+      <view class="form-row">
+        <view class="form-group form-group--half">
+          <text class="form-label">薪资（元/天）</text>
+          <input class="form-input" type="number" placeholder="200" value="{{form.salaryMin}}" bindinput="onSalaryMinInput" />
+        </view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">工时说明</text>
+        <input class="form-input" placeholder="例如：8h/天" value="{{form.workHours}}" bindinput="onWorkHoursInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">食宿条件</text>
+        <input class="form-input" placeholder="例如：包吃包住" value="{{form.foodCondition}}" bindinput="onFoodInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">招聘人数</text>
+        <input class="form-input" type="number" placeholder="例如：100人" value="{{form.peopleCount}}" bindinput="onPeopleInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">岗位要求</text>
+        <textarea class="form-textarea" placeholder="请填写岗位要求" value="{{form.requirement}}" bindinput="onRequirementInput" />
+      </view>
+
+    </view>
+
+    <!-- 证明材料上传 -->
+    <view class="form-section upload-section">
+      <view class="form-group">
+        <text class="form-label">证明材料</text>
+        <text class="form-hint">企业上传营业执照 / 个人上传身份证（企业上传营业执照/个人上传身份证复正反面）</text>
+        <view class="upload-grid">
+          <view class="upload-item" wx:for="{{certPreview}}" wx:key="*this" wx:for-index="i">
+            <image class="upload-item__image" src="{{item}}" mode="aspectFill" bindtap="handlePreviewImage" data-url="{{item}}" />
+            <text class="upload-item__remove" bindtap="handleRemoveImage" data-index="{{i}}">×</text>
+          </view>
+          <view class="upload-add" wx:if="{{certImages.length < 3 && !isEdit}}" bindtap="handleChooseImage">
+            <text class="upload-add__icon">{{uploading ? '...' : '+'}}</text>
+            <text class="upload-add__text">{{uploading ? '上传中' : '添加照片'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-actions">
+      <button class="btn-submit" bindtap="handleSubmit" loading="{{submitting}}" disabled="{{submitting}}">
+        {{isEdit ? '保存修改' : '提交审核'}}
+      </button>
+    </view>
+  </view>
+</framework-page>

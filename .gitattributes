@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.js text working-tree-encoding=UTF-8
+*.json text working-tree-encoding=UTF-8
+*.wxml text working-tree-encoding=UTF-8
+*.wxss text working-tree-encoding=UTF-8
+*.md text working-tree-encoding=UTF-8

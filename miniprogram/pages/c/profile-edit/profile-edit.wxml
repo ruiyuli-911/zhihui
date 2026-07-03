@@ -1,0 +1,113 @@
+<view class="edit-page">
+  <view class="step-card">
+    <text class="step-index">第{{currentStep}}步 / 共{{totalSteps}}步</text>
+    <text class="step-title">{{stepTitle}}</text>
+    <text class="step-desc">{{stepDesc}}</text>
+  </view>
+
+  <view class="form-section" wx:if="{{currentStep === 1}}">
+    <view class="form-group">
+      <text class="form-label">姓名</text>
+      <input class="form-input" placeholder="请输入姓名" value="{{profile.name}}" bindinput="onInput" data-field="name" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">性别</text>
+      <view class="choice-row">
+        <view wx:for="{{genderOptions}}" wx:key="*this" class="choice-chip {{profile.gender === item ? 'choice-chip--active' : ''}}" bindtap="onChooseOption" data-field="gender" data-value="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">出生年份</text>
+      <input class="form-input" type="number" maxlength="4" placeholder="例如 1972" value="{{profile.birthYear}}" bindinput="onInput" data-field="birthYear" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" maxlength="11" placeholder="请输入手机号" value="{{profile.phone}}" bindinput="onInput" data-field="phone" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">当前是谁在操作</text>
+      <view class="choice-column">
+        <view wx:for="{{relationOptions}}" wx:key="*this" class="choice-row-item {{profile.relation === item ? 'choice-row-item--active' : ''}}" bindtap="onChooseOption" data-field="relation" data-value="{{item}}">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-section" wx:if="{{currentStep === 2}}">
+    <view class="form-group">
+      <text class="form-label">想找什么工种</text>
+      <input class="form-input" placeholder="例如 建筑工、保洁员" value="{{profile.expectJob}}" bindinput="onInput" data-field="expectJob" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">期望区域</text>
+      <view class="choice-column">
+        <view wx:for="{{areaOptions}}" wx:key="*this" class="choice-row-item {{profile.expectArea === item ? 'choice-row-item--active' : ''}}" bindtap="onChooseOption" data-field="expectArea" data-value="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">会做哪些工作（可多选，最多4项）</text>
+      <view class="choice-row choice-row--wrap">
+        <view
+          wx:for="{{categoryOptions}}"
+          wx:for-index="idx"
+          wx:key="name"
+          class="choice-chip {{profile.skills.indexOf(item.name) > -1 ? 'choice-chip--active' : ''}}"
+          hover-class="choice-chip--hover"
+          bindtap="onToggleSkill"
+          data-skill="{{item.name}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-section" wx:if="{{currentStep === 3}}">
+    <view class="form-group">
+      <text class="form-label">身份证号</text>
+      <input class="form-input" placeholder="请输入身份证号" value="{{profile.idNumber}}" bindinput="onInput" data-field="idNumber" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">身份证地址</text>
+      <input class="form-input" placeholder="请输入身份证上的地址" value="{{profile.idCardAddress}}" bindinput="onInput" data-field="idCardAddress" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">是否需要政策帮扶</text>
+      <view class="switch-row">
+        <text class="switch-label">{{profile.isPoor ? '需要帮扶' : '暂时不需要'}}</text>
+        <switch checked="{{profile.isPoor}}" bindchange="onPoorChange" color="#12ae85" />
+      </view>
+    </view>
+    <view class="form-group" wx:if="{{profile.isPoor}}">
+      <text class="form-label">帮扶说明</text>
+      <input class="form-input" placeholder="例如 低保户、脱贫户" value="{{profile.poorDescription}}" bindinput="onInput" data-field="poorDescription" />
+    </view>
+  </view>
+
+  <view class="form-section" wx:if="{{currentStep === 4}}">
+    <view class="form-group">
+      <text class="form-label">身份证正面</text>
+      <view class="upload-box">
+        <image class="upload-preview" wx:if="{{profile.idCardFront}}" src="{{profile.idCardFront}}" mode="aspectFill" bindtap="handlePreview" data-url="{{profile.idCardFront}}" />
+        <view class="upload-btn" wx:if="{{!profile.idCardFront}}" bindtap="handleUpload" data-side="front">
+          <text class="upload-btn__icon">+</text>
+          <text class="upload-btn__text">拍摄或上传</text>
+        </view>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">身份证反面</text>
+      <view class="upload-box">
+        <image class="upload-preview" wx:if="{{profile.idCardBack}}" src="{{profile.idCardBack}}" mode="aspectFill" bindtap="handlePreview" data-url="{{profile.idCardBack}}" />
+        <view class="upload-btn" wx:if="{{!profile.idCardBack}}" bindtap="handleUpload" data-side="back">
+          <text class="upload-btn__icon">+</text>
+          <text class="upload-btn__text">拍摄或上传</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-actions">
+    <button class="ghost-btn" bindtap="handlePrevStep">上一步</button>
+    <button class="save-btn" bindtap="handleNextStep" loading="{{saving}}" disabled="{{saving}}">{{currentStep === totalSteps ? '完成登记' : '下一步'}}</button>
+  </view>
+</view>

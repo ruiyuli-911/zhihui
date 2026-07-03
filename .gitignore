@@ -1,0 +1,5 @@
+node_modules/
+deploy.local.json
+*.private.key
+*.key
+dist/

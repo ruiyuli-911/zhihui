@@ -1,0 +1,35 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="app-list-page">
+    <view class="app-list" wx:if="{{list.length > 0}}">
+      <view class="app-item" wx:for="{{list}}" wx:key="_id" wx:for-item="app">
+        <view class="app-item__top">
+          <view class="app-item__title-row">
+            <text class="app-item__title">{{app.jobTitle}}</text>
+            <text class="status-tag status-tag--{{app.status}}">{{statusText[app.status]}}</text>
+          </view>
+          <text class="app-item__company">{{app.companyName}}</text>
+        </view>
+
+        <view class="app-item__info">
+          <text>报名时间：{{app.displayApplyTime}}</text>
+        </view>
+
+        <view class="app-item__action" wx:if="{{app.status === 'rejected' && app.remarks}}">
+          <text class="app-item__remark">原因：{{app.remarks}}</text>
+        </view>
+
+        <view class="app-item__action" wx:if="{{app.status === 'submitted'}}">
+          <text class="app-item__cancel" bindtap="handleCancel" data-id="{{app._id}}">取消报名</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-state__text">暂无报名记录</text>
+    </view>
+  </view>
+</framework-page>

@@ -1,0 +1,44 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="bhome-page">
+    <view class="bhome-header">
+      <text class="bhome-greeting">企业端</text>
+      <text class="bhome-subtitle">岗位发布与管理</text>
+    </view>
+
+    <view class="bhome-grid">
+      <view class="bhome-card" bindtap="handleToJobs">
+        <text class="bhome-card__icon"></text>
+        <text class="bhome-card__title">岗位管理</text>
+        <text class="bhome-card__desc">查看/编辑已发布的岗位</text>
+      </view>
+      <view class="bhome-card" bindtap="handlePublish">
+        <text class="bhome-card__icon"></text>
+        <text class="bhome-card__title">发布岗位</text>
+        <text class="bhome-card__desc">发布新的招聘岗位</text>
+      </view>
+      <view class="bhome-card" bindtap="handleToApplicants">
+        <text class="bhome-card__icon"></text>
+        <text class="bhome-card__title">报名列表</text>
+        <text class="bhome-card__desc">查看和管理报名</text>
+      </view>
+      <view class="bhome-card" bindtap="handleScan">
+        <text class="bhome-card__icon"></text>
+        <text class="bhome-card__title">扫码签到</text>
+        <text class="bhome-card__desc">扫求职者二维码核销</text>
+      </view>
+      <view class="bhome-card" bindtap="handleAttendance">
+        <text class="bhome-card__icon"></text>
+        <text class="bhome-card__title">考勤记录</text>
+        <text class="bhome-card__desc">查看签到历史</text>
+      </view>
+    </view>
+
+    <view class="bhome-footer">
+      <button class="bhome-back" bindtap="handleBackToC">← 返回求职端</button>
+    </view>
+  </view>
+</framework-page>

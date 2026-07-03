@@ -1,0 +1,15 @@
+.qrcode-page { padding: 16px; }
+.qrcode-list { display: flex; flex-direction: column; gap: 16px; }
+.qrcode-card {
+  background: #fff; border-radius: 16px; padding: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.qrcode-card__title { display: block; font-size: 18px; font-weight: 700; color: #333; }
+.qrcode-card__company { display: block; font-size: 14px; color: #666; margin-top: 4px; }
+.qrcode-card__code { width: 120px; text-align: center; }
+.qrcode-img { width: 120px; height: 120px; }
+.qrcode-done { font-size: 14px; color: #52c41a; font-weight: 600; }
+.qrcode-hint { font-size: 13px; color: #999; }
+.empty-state { display: flex; justify-content: center; padding: 60px 0; }
+.empty-state__text { color: #999; font-size: 15px; }

@@ -1,0 +1,241 @@
+.detail-page {
+  padding: 16px;
+  min-height: calc(100vh - 100px);
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.loading-state__text {
+  color: #999;
+  font-size: 15px;
+}
+
+/* 即将上线 */
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 32px;
+}
+
+.coming-soon__icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.coming-soon__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.coming-soon__desc {
+  font-size: 15px;
+  color: #999;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* 金额卡片 */
+.amount-card {
+  background: linear-gradient(135deg, #12ae85, #0e8a6a);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.amount-card__label {
+  font-size: 14px;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.amount-card__value {
+  font-size: 42px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.amount-card__status {
+  display: flex;
+  justify-content: center;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.status-badge--pending {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.status-badge--confirmed {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.status-badge--disputed {
+  background: rgba(255, 77, 79, 0.8);
+  color: #fff;
+}
+
+/* 信息卡片 */
+.info-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 4px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row__label {
+  font-size: 14px;
+  color: #666;
+}
+
+.info-row__value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 备注卡片 */
+.remark-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.remark-card__label {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.remark-card__content {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 时间信息 */
+.time-info {
+  padding: 8px 4px;
+  margin-bottom: 80px;
+}
+
+.time-info__text {
+  display: block;
+  font-size: 12px;
+  color: #bbb;
+  line-height: 1.8;
+}
+
+/* 操作区 */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.action-bar--single {
+  justify-content: center;
+}
+
+.action-btn {
+  flex: 1;
+  height: 46px;
+  line-height: 46px;
+  border-radius: 23px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  padding: 0;
+}
+
+.action-btn--confirm {
+  background: #12ae85;
+  color: #fff;
+}
+
+.action-btn--confirm:active {
+  background: #0e8a6a;
+}
+
+.action-btn--dispute {
+  background: #fff;
+  color: #ff4d4f;
+  border: 1px solid #ff4d4f;
+}
+
+.action-btn--dispute:active {
+  background: #fff2f0;
+}
+
+.action-hint {
+  font-size: 14px;
+  color: #999;
+  line-height: 46px;
+}
+
+.action-hint--warn {
+  color: #ff4d4f;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.empty-state__text {
+  color: #999;
+  font-size: 15px;
+}

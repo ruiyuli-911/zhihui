@@ -1,0 +1,40 @@
+<view class="admin-page">
+  <view class="admin-header">
+    <text class="admin-title">管理后台</text>
+    <text class="admin-subtitle">平台运营管理</text>
+  </view>
+
+  <view class="stats-row">
+    <view class="stat-item"><text class="stat-num">{{stats.totalJobs || '-'}}</text><text class="stat-lbl">总岗位</text></view>
+    <view class="stat-item"><text class="stat-num">{{stats.activeJobs || '-'}}</text><text class="stat-lbl">招聘中</text></view>
+    <view class="stat-item"><text class="stat-num">{{stats.totalApplications || '-'}}</text><text class="stat-lbl">报名</text></view>
+    <view class="stat-item"><text class="stat-num">{{stats.totalJobseekers || '-'}}</text><text class="stat-lbl">求职者</text></view>
+  </view>
+
+  <view class="admin-grid">
+    <view class="admin-card" bindtap="handleJobAudit">
+      <text class="admin-card__icon">📋</text>
+      <text class="admin-card__title">岗位审核</text>
+      <text class="admin-card__desc">审核企业发布的岗位</text>
+    </view>
+    <view class="admin-card" bindtap="handleUsers">
+      <text class="admin-card__icon">👥</text>
+      <text class="admin-card__title">用户管理</text>
+      <text class="admin-card__desc">查看和管理所有用户</text>
+    </view>
+    <view class="admin-card" bindtap="handleExport">
+      <text class="admin-card__icon">📊</text>
+      <text class="admin-card__title">导出求职者</text>
+      <text class="admin-card__desc">导出求职者信息</text>
+    </view>
+    <view class="admin-card" bindtap="handleExportApply">
+      <text class="admin-card__icon">📋</text>
+      <text class="admin-card__title">导出报名表</text>
+      <text class="admin-card__desc">导出全部报名记录</text>
+    </view>
+  </view>
+
+  <view class="admin-footer">
+    <button class="admin-back" bindtap="handleBack">← 返回</button>
+  </view>
+</view>

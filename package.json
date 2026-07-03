@@ -1,0 +1,10 @@
+{
+  "name": "zhihui-code",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "encoding:check": "powershell -ExecutionPolicy Bypass -File .\\scripts\\encoding-check.ps1",
+    "deploy:preview": "node .\\scripts\\deploy-preview.js",
+    "deploy:upload": "node .\\scripts\\deploy-upload.js"
+  }
+}

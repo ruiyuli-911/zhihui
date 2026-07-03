@@ -1,0 +1,121 @@
+.applicants-page {
+  padding: 16px;
+}
+
+.filter-bar {
+  margin-bottom: 16px;
+}
+
+.picker-box {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #333;
+  font-size: 14px;
+  border: 1px solid #e8e8e8;
+}
+
+.applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.applicant-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.applicant-item__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.applicant-item__name {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.status-tag--submitted { background: #fff7e6; color: #fa8c16; }
+.status-tag--accepted { background: #f6ffed; color: #52c41a; }
+.status-tag--rejected { background: #fff2f0; color: #ff4d4f; }
+.status-tag--cancelled { background: #f5f5f5; color: #999; }
+.status-tag--completed { background: #e6f7ff; color: #1890ff; }
+
+.applicant-item__phone {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.applicant-item__meta {
+  display: block;
+  color: #999;
+  font-size: 13px;
+}
+
+.applicant-item__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.btn-action {
+  flex: 1;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+}
+
+.btn-action--approve {
+  background: #12ae85;
+  color: #ffffff;
+}
+
+.btn-action--reject {
+  background: #fff2f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+.btn-action:active {
+  opacity: 0.85;
+}
+
+.applicant-item__remark {
+  margin-top: 8px;
+  color: #ff4d4f;
+  font-size: 13px;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.empty-state__text {
+  color: #999;
+  font-size: 15px;
+}

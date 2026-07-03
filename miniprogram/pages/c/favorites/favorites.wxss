@@ -1,0 +1,15 @@
+.fav-page { padding: 16px; }
+.fav-list { display: flex; flex-direction: column; gap: 12px; }
+.fav-item {
+  background: #fff; border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fav-item__info { flex: 1; }
+.fav-item__info:active { opacity: 0.8; }
+.fav-item__title { display: block; font-size: 16px; font-weight: 600; color: #333; }
+.fav-item__company { display: block; font-size: 13px; color: #666; margin-top: 2px; }
+.fav-item__salary { display: block; font-size: 14px; color: #f5a623; font-weight: 600; margin-top: 4px; }
+.fav-item__del { font-size: 13px; color: #ff4d4f; white-space: nowrap; padding: 8px; }
+.fav-item__del:active { opacity: 0.7; }
+.empty-state { display: flex; justify-content: center; padding: 60px 0; }
+.empty-state__text { color: #999; font-size: 15px; }

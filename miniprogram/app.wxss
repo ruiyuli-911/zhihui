@@ -1,0 +1,10 @@
+/**
+ * 智汇就业 — 全局样式
+ * 适老化：大字号、高对比度、大点击区域
+ */
+
+/* 引入主题色变量 */
+@import "./styles/theme.wxss";
+
+/* 引入基础样式 */
+@import "./styles/base.wxss";

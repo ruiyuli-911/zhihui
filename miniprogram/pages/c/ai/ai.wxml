@@ -1,0 +1,315 @@
+<view class="ai-page">
+  <scroll-view
+    class="ai-scroll"
+    scroll-y
+    scroll-with-animation
+    enhanced
+    show-scrollbar="{{false}}"
+    scroll-into-view="{{scrollToId}}"
+  >
+    <view class="chat-list">
+
+      <!-- ============ 消息循环 ============ -->
+      <block wx:for="{{messages}}" wx:key="id">
+
+        <!-- ─── 用户文本消息 ─── -->
+        <view wx:if="{{item.role === 'user' && item.type === 'text'}}" class="message-row message-row--user">
+          <view class="message-bubble message-bubble--user">
+            <text class="message-text">{{item.content.text || item.content}}</text>
+          </view>
+        </view>
+
+        <!-- ─── 助手文本消息 ─── -->
+        <view wx:elif="{{item.role === 'assistant' && (item.type === 'text' || !item.type)}}" class="message-row message-row--assistant">
+          <view class="bot-avatar">
+            <view class="bot-avatar__antenna"></view>
+            <view class="bot-avatar__head">
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__mouth"></view>
+            </view>
+          </view>
+          <view class="message-bubble message-bubble--assistant">
+            <text class="message-text">{{item.content.text || item.content}}</text>
+          </view>
+        </view>
+
+        <!-- ─── 岗位卡片列表 ─── -->
+        <block wx:elif="{{item.role === 'assistant' && item.type === 'job_list'}}">
+          <view class="message-row message-row--assistant">
+            <view class="bot-avatar">
+              <view class="bot-avatar__antenna"></view>
+              <view class="bot-avatar__head">
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__mouth"></view>
+              </view>
+            </view>
+            <view class="message-block">
+              <view class="message-bubble message-bubble--assistant">
+                <text class="message-text">{{item.content.summary}}</text>
+              </view>
+              <view class="job-card-list">
+                <view
+                  class="job-card-mini"
+                  wx:for="{{item.content.jobs}}"
+                  wx:key="job_id"
+                  data-job="{{item}}"
+                  bindtap="handleViewJob"
+                >
+                  <view class="job-card-mini__header">
+                    <text class="job-card-mini__title">{{item.title}}</text>
+                    <text class="job-card-mini__salary">{{item.salary}}</text>
+                  </view>
+                  <view class="job-card-mini__company">{{item.company_name}}</view>
+                  <view class="job-card-mini__meta">
+                    <text>{{item.location}}</text>
+                    <text wx:if="{{item.distance}}"> · {{item.distance}}</text>
+                  </view>
+                  <view class="job-card-mini__tags" wx:if="{{item.benefits && item.benefits.length > 0}}">
+                    <text class="tag tag--benefit" wx:for="{{item.benefits}}" wx:key="*this">{{item}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="card-actions" wx:if="{{item.actions && item.actions.length > 0}}">
+                <button
+                  class="action-btn"
+                  wx:for="{{item.actions}}"
+                  wx:key="text"
+                  data-action="{{item}}"
+                  bindtap="handleAction"
+                >{{item.text}}</button>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- ─── 岗位详情卡片 ─── -->
+        <block wx:elif="{{item.role === 'assistant' && item.type === 'job_detail'}}">
+          <view class="message-row message-row--assistant">
+            <view class="bot-avatar">
+              <view class="bot-avatar__antenna"></view>
+              <view class="bot-avatar__head">
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__mouth"></view>
+              </view>
+            </view>
+            <view class="message-block">
+              <view class="job-detail-card">
+                <view class="job-detail-card__title">{{item.content.job.title}}</view>
+                <view class="job-detail-card__salary">{{item.content.job.salary}}</view>
+                <view class="job-detail-card__company">{{item.content.job.company_name}}</view>
+                <view class="job-detail-card__meta">
+                  <text wx:if="{{item.content.job.location}}">📍 {{item.content.job.location}}</text>
+                  <text wx:if="{{item.content.job.work_hours}}">🕐 {{item.content.job.work_hours}}</text>
+                </view>
+                <view class="job-detail-card__tags" wx:if="{{item.content.job.benefits && item.content.job.benefits.length > 0}}">
+                  <text class="tag tag--benefit" wx:for="{{item.content.job.benefits}}" wx:key="*this">{{item}}</text>
+                </view>
+                <view class="job-detail-card__section" wx:if="{{item.content.job.requirement}}">
+                  <text class="job-detail-card__label">岗位要求</text>
+                  <text class="job-detail-card__text">{{item.content.job.requirement}}</text>
+                </view>
+                <view class="job-detail-card__section" wx:if="{{item.content.job.description}}">
+                  <text class="job-detail-card__label">岗位描述</text>
+                  <text class="job-detail-card__text">{{item.content.job.description}}</text>
+                </view>
+              </view>
+              <view class="card-actions" wx:if="{{item.actions && item.actions.length > 0}}">
+                <button
+                  class="action-btn action-btn--primary"
+                  wx:for="{{item.actions}}"
+                  wx:key="text"
+                  data-action="{{item}}"
+                  bindtap="handleAction"
+                >{{item.text}}</button>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- ─── 确认报名卡片（confirm_apply / confirmation） ─── -->
+        <block wx:elif="{{item.role === 'assistant' && (item.type === 'confirmation' || item.type === 'confirm_apply')}}">
+          <view class="message-row message-row--assistant">
+            <view class="bot-avatar">
+              <view class="bot-avatar__antenna"></view>
+              <view class="bot-avatar__head">
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__mouth"></view>
+              </view>
+            </view>
+            <view class="message-block">
+              <view class="confirm-apply-card" wx:if="{{item.content.job}}">
+                <view class="confirm-apply-card__header">
+                  <text class="confirm-apply-card__title">{{item.content.job.title}}</text>
+                  <text class="confirm-apply-card__salary">{{item.content.job.salary}}</text>
+                </view>
+                <view class="confirm-apply-card__tags" wx:if="{{item.content.job.benefits && item.content.job.benefits.length > 0}}">
+                  <text class="tag tag--benefit" wx:for="{{item.content.job.benefits}}" wx:key="*this">{{item}}</text>
+                </view>
+              </view>
+              <view class="message-bubble message-bubble--assistant">
+                <text class="message-text">{{item.content.prompt || item.content.text}}</text>
+              </view>
+              <view class="confirmation-actions">
+                <button
+                  class="action-btn action-btn--confirm"
+                  data-action="{{item.actions && item.actions[0] ? item.actions[0] : ''}}"
+                  bindtap="handleConfirm"
+                >确认报名</button>
+                <button
+                  class="action-btn action-btn--cancel"
+                  bindtap="handleCancel"
+                >取消</button>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- ─── 资料收集卡片（collect_info） ─── -->
+        <block wx:elif="{{item.role === 'assistant' && item.type === 'collect_info'}}">
+          <view class="message-row message-row--assistant">
+            <view class="bot-avatar">
+              <view class="bot-avatar__antenna"></view>
+              <view class="bot-avatar__head">
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__eye"></view>
+                <view class="bot-avatar__mouth"></view>
+              </view>
+            </view>
+            <view class="message-block">
+              <view class="message-bubble message-bubble--assistant">
+                <text class="message-text">{{item.content.text}}</text>
+              </view>
+              <view class="collect-info-hint" wx:if="{{item.content.missing_fields && item.content.missing_fields.length > 0}}">
+                <text class="collect-info-hint__label">还需要：</text>
+                <view class="collect-info-hint__tags">
+                  <text class="tag tag--missing" wx:for="{{item.content.missing_fields}}" wx:key="*this">{{item}}</text>
+                </view>
+              </view>
+              <view class="collect-info-example">
+                <text class="collect-info-example__text">您可以这样说：我叫王建国，今年53岁，电话13800138000</text>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- ─── 结果卡片 ─── -->
+        <view wx:elif="{{item.role === 'assistant' && item.type === 'result'}}" class="message-row message-row--assistant">
+          <view class="bot-avatar">
+            <view class="bot-avatar__antenna"></view>
+            <view class="bot-avatar__head">
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__mouth"></view>
+            </view>
+          </view>
+          <view class="message-block">
+            <view class="result-card result-card--{{item.content.status || 'info'}}">
+              <view class="result-card__icon">
+                <text wx:if="{{item.content.status === 'success'}}">✓</text>
+                <text wx:elif="{{item.content.status === 'error'}}">✗</text>
+                <text wx:else>ℹ</text>
+              </view>
+              <view class="result-card__body">
+                <text class="result-card__title">{{item.content.title}}</text>
+                <text class="result-card__desc">{{item.content.description}}</text>
+              </view>
+            </view>
+            <view class="card-actions" wx:if="{{item.actions && item.actions.length > 0}}">
+              <button
+                class="action-btn"
+                wx:for="{{item.actions}}"
+                wx:key="text"
+                data-action="{{item}}"
+                bindtap="handleAction"
+              >{{item.text}}</button>
+            </view>
+          </view>
+        </view>
+
+        <!-- ─── 错误消息 ─── -->
+        <view wx:elif="{{item.role === 'assistant' && item.type === 'error'}}" class="message-row message-row--assistant">
+          <view class="bot-avatar">
+            <view class="bot-avatar__antenna"></view>
+            <view class="bot-avatar__head">
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__eye"></view>
+              <view class="bot-avatar__mouth"></view>
+            </view>
+          </view>
+          <view class="message-bubble message-bubble--error">
+            <text class="message-text">{{item.content.text || item.content}}</text>
+          </view>
+        </view>
+
+      </block>
+
+      <!-- ============ 快捷问题（首屏显示） ============ -->
+      <view wx:if="{{showQuickQuestions}}" class="quick-list">
+        <view
+          class="quick-item"
+          wx:for="{{quickQuestions}}"
+          wx:key="*this"
+          data-text="{{item}}"
+          bindtap="handleQuickQuestion"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+
+      <!-- ============ Loading 动画 ============ -->
+      <view wx:if="{{loading}}" class="message-row message-row--assistant">
+        <view class="bot-avatar">
+          <view class="bot-avatar__antenna"></view>
+          <view class="bot-avatar__head">
+            <view class="bot-avatar__eye"></view>
+            <view class="bot-avatar__eye"></view>
+            <view class="bot-avatar__mouth"></view>
+          </view>
+        </view>
+        <view class="message-bubble message-bubble--assistant typing-bubble">
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+        </view>
+      </view>
+
+      <view id="bottom-anchor" class="bottom-anchor"></view>
+    </view>
+  </scroll-view>
+
+  <!-- ============ 输入区 ============ -->
+  <view class="composer">
+    <view class="composer__input-wrap">
+      <input
+        class="composer__input"
+        placeholder="{{recording ? '正在录音...' : '请输入或按住说话'}}"
+        value="{{inputText}}"
+        bindinput="handleInput"
+        bindconfirm="handleSend"
+        confirm-type="send"
+        disabled="{{recording}}"
+      />
+    </view>
+    <view
+      class="composer__mic {{recording ? 'composer__mic--recording' : ''}}"
+      bindlongpress="startVoice"
+      bindtouchend="stopVoice"
+    >
+      <text class="composer__mic-icon">{{recording ? '◉' : '🎤'}}</text>
+    </view>
+  </view>
+
+  <view class="voice-tip" wx:if="{{recording}}">
+    <text>{{voiceTip}}</text>
+  </view>
+  <view class="voice-tip" wx:elif="{{voiceText}}">
+    <text>识别：{{voiceText}}</text>
+  </view>
+  <view class="ai-footnote">
+    <text>AI内容仅供参考 · 点击岗位可查看详情</text>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+{
+  "appid": "wxbbc7edf7ce254861",
+  "projectPath": "./miniprogram",
+  "privateKeyPath": "./private.2026-07-01.key",
+  "ignores": [
+    "node_modules/**/*"
+  ],
+  "setting": {
+    "es6": true,
+    "minifyJS": true,
+    "minifyWXML": true,
+    "minifyWXSS": true
+  },
+  "preview": {
+    "desc": "framework preview build"
+  },
+  "upload": {
+    "version": "1.0.0",
+    "desc": "framework upload build"
+  }
+}

@@ -1,0 +1,50 @@
+<view class="dashboard-page">
+  <view class="dashboard-header">
+    <text class="dashboard-title">就业数据看板</text>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stats-card">
+      <text class="stats-number">{{data.totalJobs || '-'}}</text>
+      <text class="stats-label">岗位总数</text>
+    </view>
+    <view class="stats-card stats-card--green">
+      <text class="stats-number">{{data.activeJobs || '-'}}</text>
+      <text class="stats-label">招聘中</text>
+    </view>
+    <view class="stats-card stats-card--orange">
+      <text class="stats-number">{{data.totalApplications || '-'}}</text>
+      <text class="stats-label">报名总数</text>
+    </view>
+    <view class="stats-card stats-card--blue">
+      <text class="stats-number">{{data.acceptedApplications || '-'}}</text>
+      <text class="stats-label">已录取</text>
+    </view>
+    <view class="stats-card stats-card--purple">
+      <text class="stats-number">{{data.totalJobseekers || '-'}}</text>
+      <text class="stats-label">求职者</text>
+    </view>
+    <view class="stats-card stats-card--red">
+      <text class="stats-number">{{data.totalCompanies || '-'}}</text>
+      <text class="stats-label">企业</text>
+    </view>
+  </view>
+
+  <view class="gov-nav">
+    <view class="gov-nav__card" bindtap="handleAnalysis">
+      <text class="gov-nav__icon">📈</text>
+      <text class="gov-nav__title">统计分析</text>
+      <text class="gov-nav__desc">查看就业数据趋势</text>
+    </view>
+    <view class="gov-nav__card" bindtap="handlePolicies">
+      <text class="gov-nav__icon">📋</text>
+      <text class="gov-nav__title">政策管理</text>
+      <text class="gov-nav__desc">发布和管理就业政策</text>
+    </view>
+    <view class="gov-nav__card" bindtap="handleEnterprises">
+      <text class="gov-nav__icon">🏢</text>
+      <text class="gov-nav__title">企业监管</text>
+      <text class="gov-nav__desc">查看企业注册信息</text>
+    </view>
+  </view>
+</view>

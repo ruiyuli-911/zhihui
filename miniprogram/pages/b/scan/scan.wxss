@@ -1,0 +1,17 @@
+.scan-page { padding: 24px 16px; }
+.scan-card { background: #fff; border-radius: 16px; padding: 40px 20px; text-align: center; }
+.scan-title { font-size: 22px; font-weight: 700; color: #333; }
+.scan-desc { font-size: 14px; color: #999; margin: 8px 0 30px; }
+.scan-btn-area { display: flex; justify-content: center; }
+.scan-btn {
+  width: 160px; height: 160px; border-radius: 80px;
+  background: #12ae85; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.scan-btn:active { opacity: 0.85; }
+.scan-btn__icon { font-size: 48px; }
+.scan-btn__text { color: #fff; font-size: 18px; font-weight: 600; margin-top: 8px; }
+.result-card { background: #fff; border-radius: 16px; padding: 40px 20px; text-align: center; }
+.result-title { font-size: 22px; font-weight: 700; display: block; }
+.result-msg { font-size: 16px; color: #666; margin: 12px 0 24px; display: block; }
+.result-btn { height: 44px; line-height: 44px; border-radius: 22px; background: #12ae85; color: #fff; font-size: 16px; border: none; }

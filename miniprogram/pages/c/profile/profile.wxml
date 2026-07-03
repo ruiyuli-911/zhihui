@@ -1,0 +1,47 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="profile-page">
+    <view class="profile-card">
+      <view class="profile-avatar">
+        <text class="profile-avatar__text">我</text>
+      </view>
+      <text class="profile-name">{{displayName}}</text>
+      <text class="profile-desc">{{roleText}}</text>
+    </view>
+
+    <view class="menu-list">
+      <view wx:if="{{!accountInfo}}" class="menu-item" bindtap="handleLogin">
+        <text class="menu-icon">登</text>
+        <text class="menu-text">去登录</text>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view wx:if="{{accountInfo}}" class="menu-item" bindtap="handleEditProfile">
+        <text class="menu-icon">填</text>
+        <text class="menu-text">完善资料</text>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view wx:if="{{canOpenAdmin}}" class="menu-item" bindtap="handleAdmin">
+        <text class="menu-icon">管</text>
+        <text class="menu-text">管理后台</text>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleSwitchToCompany">
+        <text class="menu-icon">企</text>
+        <text class="menu-text">进入企业端</text>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view wx:if="{{accountInfo}}" class="menu-item" bindtap="handleLogout">
+        <text class="menu-icon">退</text>
+        <text class="menu-text">退出登录</text>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+</framework-page>

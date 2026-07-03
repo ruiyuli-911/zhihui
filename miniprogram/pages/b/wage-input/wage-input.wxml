@@ -1,0 +1,148 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="wage-input-page">
+
+    <!-- 云函数未就绪 -->
+    <view class="coming-soon" wx:if="{{!cloudReady}}">
+      <view class="coming-soon__icon">🚧</view>
+      <text class="coming-soon__title">功能即将上线</text>
+      <text class="coming-soon__desc">工资录入功能正在紧锣密鼓地开发中，</text>
+      <text class="coming-soon__desc">预计 7月7日 正式上线，敬请期待！</text>
+    </view>
+
+    <!-- 表单 -->
+    <view class="form-container" wx:elif="{{cloudReady}}">
+
+      <!-- 员工选择 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">选择员工</text>
+        </view>
+        <picker
+          class="form-picker"
+          mode="selector"
+          range="{{employeePickerRange}}"
+          value="{{employeeIndex}}"
+          bindchange="handleEmployeeChange"
+        >
+          <view class="form-picker__display">
+            <text wx:if="{{employeeIndex >= 0}}">{{employeePickerRange[employeeIndex]}}</text>
+            <text wx:else class="form-picker__placeholder">请选择员工</text>
+          </view>
+          <text class="form-picker__arrow">›</text>
+        </picker>
+      </view>
+
+      <!-- 岗位名称（未选择员工时可手动填写） -->
+      <view class="form-section" wx:if="{{!employeeId}}">
+        <view class="form-section__header">
+          <text class="form-section__title">岗位名称</text>
+        </view>
+        <input
+          class="form-input"
+          placeholder="请输入岗位名称"
+          value="{{jobTitle}}"
+          bindinput="handleJobTitleInput"
+        />
+      </view>
+
+      <!-- 工资金额 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">工资金额</text>
+          <text class="form-section__required">*</text>
+        </view>
+        <view class="form-amount-wrap">
+          <text class="form-amount__symbol">¥</text>
+          <input
+            class="form-input form-input--amount"
+            type="digit"
+            placeholder="请输入工资金额"
+            value="{{amount}}"
+            bindinput="handleAmountInput"
+          />
+        </view>
+      </view>
+
+      <!-- 工资周期 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">工资周期</text>
+          <text class="form-section__required">*</text>
+        </view>
+        <picker
+          class="form-picker"
+          mode="selector"
+          range="{{periodOptions}}"
+          value="{{periodIndex}}"
+          bindchange="handlePeriodChange"
+        >
+          <view class="form-picker__display">
+            <text wx:if="{{periodIndex >= 0}}">{{periodOptions[periodIndex]}}</text>
+            <text wx:else class="form-picker__placeholder">请选择工资周期</text>
+          </view>
+          <text class="form-picker__arrow">›</text>
+        </picker>
+      </view>
+
+      <!-- 工作天数 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">工作天数</text>
+        </view>
+        <input
+          class="form-input"
+          type="digit"
+          placeholder="请输入工作天数（选填）"
+          value="{{workDays}}"
+          bindinput="handleWorkDaysInput"
+        />
+      </view>
+
+      <!-- 工作小时 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">工作小时</text>
+        </view>
+        <input
+          class="form-input"
+          type="digit"
+          placeholder="请输入工作小时数（选填）"
+          value="{{workHours}}"
+          bindinput="handleWorkHoursInput"
+        />
+      </view>
+
+      <!-- 备注 -->
+      <view class="form-section">
+        <view class="form-section__header">
+          <text class="form-section__title">备注</text>
+        </view>
+        <textarea
+          class="form-textarea"
+          placeholder="备注信息（选填）"
+          value="{{remark}}"
+          bindinput="handleRemarkInput"
+          maxlength="200"
+        />
+      </view>
+
+      <!-- 提交按钮 -->
+      <view class="form-submit">
+        <button
+          class="submit-btn"
+          disabled="{{submitting}}"
+          loading="{{submitting}}"
+          bindtap="handleSubmit"
+        >
+          {{submitting ? '提交中...' : '确认录入'}}
+        </button>
+      </view>
+
+    </view>
+
+  </view>
+</framework-page>

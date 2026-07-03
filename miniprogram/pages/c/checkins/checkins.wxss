@@ -1,0 +1,10 @@
+.checkin-list-page { padding: 16px; }
+.checkin-list { display: flex; flex-direction: column; gap: 12px; }
+.checkin-item { background: #fff; border-radius: 12px; padding: 14px 16px; }
+.checkin-item__top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.checkin-item__title { font-size: 16px; font-weight: 600; color: #333; }
+.checkin-item__time { font-size: 14px; color: #999; }
+.checkin-item__company { display: block; font-size: 14px; color: #666; }
+.checkin-item__date { display: block; font-size: 13px; color: #999; margin-top: 4px; }
+.empty-state { display: flex; justify-content: center; padding: 60px 0; }
+.empty-state__text { color: #999; font-size: 15px; }

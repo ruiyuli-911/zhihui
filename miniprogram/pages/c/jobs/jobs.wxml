@@ -1,0 +1,69 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="job-list-page">
+    <view class="search-bar" hover-class="search-bar--active" bindtap="handleSearchTap">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">搜索岗位、企业名称...</text>
+    </view>
+
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-list">
+        <view class="category-item {{currentCategory === '' ? 'category-item--active' : ''}}" bindtap="handleCategoryTap" data-category="">
+          <text>全部</text>
+        </view>
+        <view class="category-item {{currentCategory === c.name ? 'category-item--active' : ''}}" wx:for="{{categories}}" wx:key="name" bindtap="handleCategoryTap" data-category="{{c.name}}">
+          <text>{{c.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="sort-bar">
+      <view class="sort-item {{sortBy === 'default' ? 'sort-item--active' : ''}}" bindtap="handleSortTap" data-sort="default">
+        <text>综合推荐</text>
+      </view>
+      <view class="sort-item {{sortBy === 'applyCount' ? 'sort-item--active' : ''}}" bindtap="handleSortTap" data-sort="applyCount">
+        <text>最热门</text>
+      </view>
+      <view class="sort-item {{sortBy === 'newest' ? 'sort-item--active' : ''}}" bindtap="handleSortTap" data-sort="newest">
+        <text>最新发布</text>
+      </view>
+    </view>
+
+    <view class="job-list" wx:if="{{jobs.length}}">
+      <view class="job-card" wx:for="{{jobs}}" wx:key="_id" wx:for-item="job" bindtap="handleJobTap" data-id="{{job._id}}">
+        <view class="job-card__top">
+          <view class="job-card__title-row">
+            <text class="job-card__title">{{job.title}}</text>
+            <text class="job-card__hot-tag" wx:if="{{job.isHot}}">热门</text>
+          </view>
+          <text class="job-card__salary">{{job.displaySalary}}</text>
+        </view>
+        <view class="job-card__info">
+          <text class="job-card__company">{{job.companyName}}</text>
+          <text class="job-card__meta">{{job.area}} · {{job.workHours}}</text>
+        </view>
+        <view class="job-card__footer">
+          <view class="job-card__tags">
+            <text class="job-card__tag" wx:if="{{job.categoryName}}">{{job.categoryName}}</text>
+            <text class="job-card__tag" wx:if="{{job.foodCondition}}">{{job.foodCondition}}</text>
+          </view>
+          <text class="job-card__apply-count">{{job.applyCount || 0}}人已报名</text>
+        </view>
+      </view>
+
+      <view class="load-more" wx:if="{{hasMore}}">
+        <text class="load-more__text" bindtap="handleLoadMore">加载更多</text>
+      </view>
+      <view class="load-more" wx:elif="{{jobs.length > 0}}">
+        <text class="load-more__text load-more__text--done">已显示全部岗位</text>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-state__text">暂无岗位信息</text>
+    </view>
+  </view>
+</framework-page>

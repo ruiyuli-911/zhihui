@@ -1,0 +1,76 @@
+<view class="page-container home-page safe-bottom">
+  <view class="home-hero">
+  <view class="home-hero__content">
+    <text class="home-hero__greeting">
+      {{heroProfile.name}}，您好
+    </text>
+
+    <text class="home-hero__desc">
+      {{heroProfile.completionText}}
+    </text>
+  </view>
+
+  <view class="home-hero__actions">
+    <view
+      class="home-search"
+      hover-class="home-search--active"
+      bindtap="handleSearchTap"
+    >
+      <text class="home-search__placeholder">搜索岗位、工种或企业</text>
+    </view>
+  </view>
+</view>
+
+  <view class="card voice-card">
+    <view class="voice-card__header">
+      <view>
+        <text class="voice-card__title">语音找工作</text>
+        <text class="voice-card__subtitle">点击按钮，说出您想找的工作</text>
+      </view>
+    </view>
+
+    <view class="voice-panel">
+      <view class="voice-panel__button voice-panel__button--{{voiceState}}" hover-class="voice-panel__button--active" bindtap="handleVoiceTap">
+        <text class="voice-panel__mic">语音</text>
+      </view>
+      <text class="voice-panel__tip">{{voiceTip}}</text>
+      <text wx:if="{{voiceText}}" class="voice-panel__text">识别结果：{{voiceText}}</text>
+    </view>
+  </view>
+
+  <view class="card section-card" wx:if="{{homeData && homeData.quickActions}}">
+    <view class="section-card__title-row">
+      <text class="section-card__title">快捷功能</text>
+    </view>
+    <view class="quick-grid quick-grid--simple">
+      <block wx:for="{{homeData.quickActions}}" wx:key="key" wx:for-item="action">
+        <view class="quick-grid__item" data-key="{{action.key}}" data-url="{{action.url}}" data-is-tab="{{action.isTab}}" hover-class="quick-grid__item--active" bindtap="handleQuickActionTap">
+          <view class="quick-grid__icon">{{action.icon}}</view>
+          <text class="quick-grid__label">{{action.text}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="card section-card" wx:if="{{homeData && homeData.recommendJobs && homeData.recommendJobs.length > 0}}">
+    <view class="section-card__title-row">
+      <text class="section-card__title">推荐岗位</text>
+      <text class="section-card__link" hover-class="section-card__link--active" bindtap="handleSearchTap">更多</text>
+    </view>
+    <view class="job-list">
+      <block wx:for="{{homeData.recommendJobs}}" wx:key="id" wx:for-item="job">
+        <view class="job-card" data-id="{{job.id}}" hover-class="job-card--active" bindtap="handleJobTap">
+          <view class="job-card__top">
+            <view class="job-card__title-row">
+              <text class="job-card__title">{{job.title}}</text>
+              <text class="job-card__hot-tag" wx:if="{{job.isHot}}">热门</text>
+            </view>
+            <text class="job-card__salary">{{job.salary}}</text>
+          </view>
+          <text class="job-card__company">{{job.companyName}}</text>
+          <text class="job-card__meta">{{job.area}} · {{job.workHours}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="audit-page">
+    <view class="audit-intro">
+      <text class="audit-intro__title">岗位审核台</text>
+      <text class="audit-intro__desc">按状态分开查看，驳回和撤回不再混在同一个列表里。</text>
+    </view>
+
+    <view class="tab-grid">
+      <view
+        class="tab-card {{currentTab === item.key ? 'tab-card--active' : ''}}"
+        wx:for="{{tabList}}"
+        wx:key="key"
+        wx:for-item="item"
+        bindtap="handleTabTap"
+        data-tab="{{item.key}}"
+      >
+        <text class="tab-card__label">{{item.label}}</text>
+        <text class="tab-card__count">{{item.count}}</text>
+      </view>
+    </view>
+
+    <view class="job-list" wx:if="{{jobs.length}}">
+      <view class="audit-card" wx:for="{{jobs}}" wx:key="_id" wx:for-item="job">
+        <view class="audit-card__header">
+          <view class="audit-card__title-wrap">
+            <text class="audit-card__title">{{job.title}}</text>
+            <text class="audit-tag audit-tag--{{job.auditStatus}}">{{job.displayStatus}}</text>
+          </view>
+          <text class="audit-card__company">{{job.displayCompany}}</text>
+        </view>
+
+        <view class="audit-card__body">
+          <view class="audit-card__line">
+            <text>{{job.displayArea}}</text>
+            <text>{{job.displayWorkHours}}</text>
+          </view>
+          <view class="audit-card__line audit-card__line--strong">
+            <text class="audit-card__salary">{{job.displaySalary}}</text>
+            <text class="audit-card__time">更新：{{job.displayTime}}</text>
+          </view>
+        </view>
+
+        <view class="audit-card__certs" wx:if="{{currentTab === 'pending' && job.certImages.length > 0}}">
+          <text class="audit-card__section-title">证明材料</text>
+          <view class="cert-grid">
+            <image
+              class="cert-thumb"
+              wx:for="{{job.certImages}}"
+              wx:key="*this"
+              src="{{item}}"
+              mode="aspectFill"
+              bindtap="handlePreviewCert"
+              data-url="{{item}}"
+            />
+          </view>
+        </view>
+
+        <view class="audit-card__hot" wx:if="{{currentTab === 'approved'}}">
+          <text class="audit-card__section-title">热门岗位</text>
+          <switch checked="{{job.isHot}}" bindchange="handleHotToggle" data-id="{{job._id}}" />
+        </view>
+
+        <view class="audit-card__reason audit-card__reason--{{job.auditStatus}}" wx:if="{{job.displayReasonLabel && job.auditMsg}}">
+          <text class="audit-card__reason-label">{{job.displayReasonLabel}}</text>
+          <text class="audit-card__reason-text">{{job.auditMsg}}</text>
+        </view>
+
+        <view class="audit-card__actions" wx:if="{{currentTab === 'pending'}}">
+          <button class="btn-audit btn-audit--approve" bindtap="handleApprove" data-id="{{job._id}}">通过</button>
+          <button class="btn-audit btn-audit--reject" bindtap="handleReject" data-id="{{job._id}}">驳回</button>
+        </view>
+
+        <view class="audit-card__actions" wx:elif="{{currentTab === 'approved'}}">
+          <button class="btn-audit btn-audit--revoke" bindtap="handleRevoke" data-id="{{job._id}}" data-title="{{job.title}}">撤回发布</button>
+        </view>
+
+        <view class="audit-card__actions" wx:elif="{{currentTab === 'rejected' || currentTab === 'revoked'}}">
+          <button class="btn-audit btn-audit--delete" bindtap="handleDelete" data-id="{{job._id}}" data-title="{{job.title}}">删除岗位</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-state__text">{{emptyText}}</text>
+    </view>
+  </view>
+</framework-page>

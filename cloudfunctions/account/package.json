@@ -1,0 +1,9 @@
+{
+  "name": "account",
+  "version": "1.0.0",
+  "description": "智汇就业 - 微信账号服务",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^3.0.4"
+  }
+}

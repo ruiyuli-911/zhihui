@@ -1,0 +1,29 @@
+<view class="apply-page">
+  <view class="apply-card" wx:if="{{job}}">
+    <text class="apply-card__title">报名确认</text>
+
+    <view class="job-summary">
+      <text class="job-summary__name">{{job.title}}</text>
+      <text class="job-summary__company">{{job.companyName}}</text>
+      <text class="job-summary__salary">{{formatSalary(job)}}</text>
+    </view>
+  </view>
+
+  <view class="apply-card">
+    <text class="apply-card__title">报名信息</text>
+    <view class="info-row">
+      <text class="info-row__label">姓名</text>
+      <text class="info-row__value">{{userName}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-row__label">手机号</text>
+      <text class="info-row__value">{{userPhone}}</text>
+    </view>
+  </view>
+
+  <view class="apply-actions">
+    <button class="btn-submit" bindtap="handleSubmit" loading="{{submitting}}" disabled="{{submitting}}">
+      确认报名
+    </button>
+  </view>
+</view>

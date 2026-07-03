@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "framework-page": "/components/framework-page/framework-page"
+  },
+  "navigationBarTitleText": "发布岗位"
+}

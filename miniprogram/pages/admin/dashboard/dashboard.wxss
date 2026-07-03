@@ -1,0 +1,86 @@
+.admin-page {
+  padding: 24px 16px;
+}
+
+.admin-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.admin-title {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.admin-subtitle {
+  display: block;
+  font-size: 14px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.stats-row {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.stat-item {
+  flex: 1; background: #fff; border-radius: 12px; padding: 14px 8px; text-align: center;
+}
+.stat-num { display: block; font-size: 24px; font-weight: 700; color: #12ae85; }
+.stat-lbl { display: block; font-size: 12px; color: #999; margin-top: 2px; }
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.admin-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.admin-card:active {
+  opacity: 0.85;
+}
+
+.admin-card__icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.admin-card__title {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.admin-card__desc {
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+
+.admin-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.admin-back {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 24px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  color: #666;
+  font-size: 14px;
+  border: none;
+}

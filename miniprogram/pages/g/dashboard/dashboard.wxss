@@ -1,0 +1,25 @@
+.dashboard-page { padding: 16px; }
+.dashboard-header { padding: 16px 0; text-align: center; }
+.dashboard-title { font-size: 22px; font-weight: 700; color: #333; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stats-card {
+  background: #fff; border-radius: 16px; padding: 24px 16px; text-align: center;
+  border-top: 4px solid #12ae85;
+}
+.stats-card--green { border-top-color: #52c41a; }
+.stats-card--orange { border-top-color: #fa8c16; }
+.stats-card--blue { border-top-color: #1890ff; }
+.stats-card--purple { border-top-color: #722ed1; }
+.stats-card--red { border-top-color: #ff4d4f; }
+.stats-number { display: block; font-size: 32px; font-weight: 700; color: #333; }
+.stats-label { display: block; font-size: 14px; color: #999; margin-top: 4px; }
+
+.gov-nav { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.gov-nav__card {
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border-radius: 16px; padding: 18px 16px;
+}
+.gov-nav__card:active { opacity: 0.85; }
+.gov-nav__icon { font-size: 32px; }
+.gov-nav__title { display: block; font-size: 16px; font-weight: 600; color: #333; }
+.gov-nav__desc { display: block; font-size: 13px; color: #999; margin-top: 2px; }

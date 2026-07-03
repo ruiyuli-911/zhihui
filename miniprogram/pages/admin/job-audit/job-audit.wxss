@@ -1,0 +1,288 @@
+.audit-page {
+  min-height: 100vh;
+  padding: 16px;
+  background: #f5f7fb;
+}
+
+.audit-intro {
+  margin-bottom: 14px;
+}
+
+.audit-intro__title {
+  display: block;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.audit-intro__desc {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.tab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.tab-card--active {
+  background: #eefaf6;
+  border-color: #12ae85;
+  box-shadow: 0 10px 24px rgba(18, 174, 133, 0.14);
+}
+
+.tab-card__label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tab-card--active .tab-card__label {
+  color: #0f8f6d;
+}
+
+.tab-card__count {
+  color: #111827;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audit-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+}
+
+.audit-card__header {
+  margin-bottom: 12px;
+}
+
+.audit-card__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.audit-card__title {
+  color: #111827;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.audit-card__company {
+  display: block;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.audit-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.audit-card__line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.audit-card__line--strong {
+  align-items: center;
+}
+
+.audit-card__salary {
+  color: #d97706;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.audit-card__time {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.audit-tag {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.audit-tag--pending {
+  background: #fff7e6;
+  color: #d97706;
+}
+
+.audit-tag--approved {
+  background: #edfdf3;
+  color: #16a34a;
+}
+
+.audit-tag--rejected {
+  background: #fff1f2;
+  color: #e11d48;
+}
+
+.audit-tag--revoked {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.audit-card__certs,
+.audit-card__hot,
+.audit-card__reason,
+.audit-card__actions {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #eef2f7;
+}
+
+.audit-card__section-title {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cert-grid {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cert-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.audit-card__hot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.audit-card__reason {
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.audit-card__reason--rejected {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.audit-card__reason--revoked {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.audit-card__reason-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.audit-card__reason--rejected .audit-card__reason-label,
+.audit-card__reason--rejected .audit-card__reason-text {
+  color: #e11d48;
+}
+
+.audit-card__reason--revoked .audit-card__reason-label,
+.audit-card__reason--revoked .audit-card__reason-text {
+  color: #ea580c;
+}
+
+.audit-card__reason-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.audit-card__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-audit {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-audit--approve {
+  background: #12ae85;
+  color: #ffffff;
+}
+
+.btn-audit--reject {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+.btn-audit--revoke {
+  background: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+}
+
+.btn-audit--delete {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+.btn-audit:active {
+  opacity: 0.86;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  padding: 72px 0;
+}
+
+.empty-state__text {
+  color: #9ca3af;
+  font-size: 15px;
+}

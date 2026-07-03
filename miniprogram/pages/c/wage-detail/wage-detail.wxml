@@ -1,0 +1,101 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="detail-page">
+
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text class="loading-state__text">加载中...</text>
+    </view>
+
+    <!-- 云函数未就绪 -->
+    <view class="coming-soon" wx:elif="{{!cloudReady}}">
+      <view class="coming-soon__icon">🚧</view>
+      <text class="coming-soon__title">功能即将上线</text>
+      <text class="coming-soon__desc">工资详情功能正在开发中，</text>
+      <text class="coming-soon__desc">预计 7月7日 正式上线，敬请期待！</text>
+    </view>
+
+    <!-- 工资详情 -->
+    <view class="detail-content" wx:elif="{{wage}}">
+
+      <!-- 金额卡片 -->
+      <view class="amount-card">
+        <text class="amount-card__label">工资金额</text>
+        <text class="amount-card__value">{{wage.displayAmount}}</text>
+        <view class="amount-card__status">
+          <text class="status-badge status-badge--{{wage.status || 'pending'}}">
+            {{wage.statusText}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 信息卡片 -->
+      <view class="info-card">
+        <view class="info-row">
+          <text class="info-row__label">岗位名称</text>
+          <text class="info-row__value">{{wage.jobTitle || '—'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">企业名称</text>
+          <text class="info-row__value">{{wage.companyName || '—'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">工资周期</text>
+          <text class="info-row__value">{{wage.displayPeriod}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">工作天数</text>
+          <text class="info-row__value">{{wage.displayWorkDays}} 天</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">工作小时</text>
+          <text class="info-row__value">{{wage.displayWorkHours}} 小时</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">考勤日期</text>
+          <text class="info-row__value">{{wage.displayCheckinDate}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-row__label">发放截止日</text>
+          <text class="info-row__value">{{wage.displayDueDate}}</text>
+        </view>
+      </view>
+
+      <!-- 备注 -->
+      <view class="remark-card" wx:if="{{wage.remark}}">
+        <text class="remark-card__label">备注</text>
+        <text class="remark-card__content">{{wage.remark}}</text>
+      </view>
+
+      <!-- 时间信息 -->
+      <view class="time-info">
+        <text class="time-info__text">创建时间：{{wage.displayCreateTime}}</text>
+        <text class="time-info__text">最近更新：{{wage.displayUpdateTime}}</text>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="action-bar" wx:if="{{wage.status === 'pending'}}">
+        <button class="action-btn action-btn--dispute" bindtap="handleDispute">有异议</button>
+        <button class="action-btn action-btn--confirm" bindtap="handleConfirm">确认工资</button>
+      </view>
+
+      <view class="action-bar action-bar--single" wx:elif="{{wage.status === 'confirmed'}}">
+        <text class="action-hint">已确认，如有问题请联系企业</text>
+      </view>
+
+      <view class="action-bar action-bar--single" wx:elif="{{wage.status === 'disputed'}}">
+        <text class="action-hint action-hint--warn">有异议，平台正在处理中</text>
+      </view>
+
+    </view>
+
+    <!-- 无数据 -->
+    <view class="empty-state" wx:elif="{{!loading && cloudReady}}">
+      <text class="empty-state__text">未找到工资记录</text>
+    </view>
+
+  </view>
+</framework-page>

@@ -1,0 +1,71 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="detail-page" wx:if="{{job}}">
+    <view class="detail-header">
+      <view class="detail-header__top">
+        <view class="detail-header__title-row">
+          <text class="detail-header__title">{{job.title}}</text>
+          <text class="hot-tag" wx:if="{{job.isHot}}">热门</text>
+        </view>
+        <text class="detail-header__salary">{{job.displaySalary}}</text>
+      </view>
+
+      <text class="detail-header__company">{{job.companyName || '未知企业'}}</text>
+
+      <view class="detail-header__tags">
+        <text class="tag-item" wx:if="{{job.categoryName}}">{{job.categoryName}}</text>
+        <text class="tag-item" wx:if="{{job.foodCondition}}">{{job.foodCondition}}</text>
+        <text class="tag-item" wx:if="{{job.workHours}}">{{job.workHours}}</text>
+      </view>
+    </view>
+
+    <view class="detail-section">
+      <text class="detail-section__title">基本信息</text>
+      <view class="info-grid">
+        <view class="info-item">
+          <text class="info-item__label">工作区域</text>
+          <text class="info-item__value">{{job.area || '未填写'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item__label">详细地址</text>
+          <text class="info-item__value">{{job.address || '未填写'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item__label">招聘人数</text>
+          <text class="info-item__value">{{job.peopleCount || '不限'}}人</text>
+        </view>
+        <view class="info-item">
+          <text class="info-item__label">报名人数</text>
+          <text class="info-item__value">{{job.applyCount || 0}}人</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="detail-section" wx:if="{{job.requirement}}">
+      <text class="detail-section__title">岗位要求</text>
+      <text class="detail-section__content">{{job.requirement}}</text>
+    </view>
+
+    <view class="detail-section" wx:if="{{job.description}}">
+      <text class="detail-section__title">岗位描述</text>
+      <text class="detail-section__content">{{job.description}}</text>
+    </view>
+
+    <view class="detail-footer">
+      <view class="detail-footer__left">
+        <view class="btn-fav {{isFavorited ? 'btn-fav--active' : ''}}" bindtap="handleToggleFavorite">
+          <text class="btn-fav__icon">{{isFavorited ? '♥' : '♡'}}</text>
+          <text class="btn-fav__text">{{isFavorited ? '已收藏' : '收藏'}}</text>
+        </view>
+      </view>
+      <button class="btn-apply" bindtap="handleApply">立即报名</button>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:else>
+    <text class="loading-state__text">加载中...</text>
+  </view>
+</framework-page>

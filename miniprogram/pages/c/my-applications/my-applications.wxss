@@ -1,0 +1,89 @@
+.app-list-page {
+  padding: 16px;
+}
+
+.app-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.app-item__top {
+  margin-bottom: 6px;
+}
+
+.app-item__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.app-item__title {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.status-tag--submitted { background: #fff7e6; color: #fa8c16; }
+.status-tag--accepted { background: #f6ffed; color: #52c41a; }
+.status-tag--rejected { background: #fff2f0; color: #ff4d4f; }
+.status-tag--cancelled { background: #f5f5f5; color: #999; }
+.status-tag--completed { background: #e6f7ff; color: #1890ff; }
+
+.app-item__company {
+  display: block;
+  color: #666;
+  font-size: 14px;
+}
+
+.app-item__info {
+  color: #999;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.app-item__action {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.app-item__remark {
+  color: #ff4d4f;
+  font-size: 13px;
+}
+
+.app-item__cancel {
+  color: #ff4d4f;
+  font-size: 14px;
+}
+
+.app-item__cancel:active {
+  opacity: 0.7;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.empty-state__text {
+  color: #999;
+  font-size: 15px;
+}

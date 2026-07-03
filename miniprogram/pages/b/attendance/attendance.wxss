@@ -1,0 +1,10 @@
+.attendance-page { padding: 16px; }
+.attendance-list { display: flex; flex-direction: column; gap: 12px; }
+.attendance-item { background: #fff; border-radius: 12px; padding: 14px 16px; }
+.attendance-item__top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.attendance-item__name { font-size: 16px; font-weight: 600; color: #333; }
+.attendance-item__time { font-size: 14px; color: #999; }
+.attendance-item__phone { display: block; font-size: 14px; color: #666; }
+.attendance-item__meta { display: block; font-size: 13px; color: #999; margin-top: 4px; }
+.empty-state { display: flex; justify-content: center; padding: 60px 0; }
+.empty-state__text { color: #999; font-size: 15px; }

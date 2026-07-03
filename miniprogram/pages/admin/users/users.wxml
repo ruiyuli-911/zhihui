@@ -1,0 +1,28 @@
+<view class="users-page">
+  <view class="users-filter">
+    <view class="filter-chip {{filterRole === '' ? 'filter-chip--active' : ''}}" bindtap="handleFilter" data-role="">全部</view>
+    <view class="filter-chip {{filterRole === 'jobseeker' ? 'filter-chip--active' : ''}}" bindtap="handleFilter" data-role="jobseeker">求职者</view>
+    <view class="filter-chip {{filterRole === 'company_admin' ? 'filter-chip--active' : ''}}" bindtap="handleFilter" data-role="company_admin">企业</view>
+    <view class="filter-chip {{filterRole === 'platform_admin' ? 'filter-chip--active' : ''}}" bindtap="handleFilter" data-role="platform_admin">管理员</view>
+    <view class="filter-chip {{filterRole === 'gov_admin' ? 'filter-chip--active' : ''}}" bindtap="handleFilter" data-role="gov_admin">政府</view>
+  </view>
+
+  <view class="users-list" wx:if="{{list.length > 0}}">
+    <view class="user-item" wx:for="{{list}}" wx:key="_id" wx:for-item="item">
+      <view class="user-item__top">
+        <text class="user-item__name">{{item.name || item.companyName || '未知'}}</text>
+        <text class="user-item__role">{{roleText[item.role] || item.role}}</text>
+      </view>
+      <text class="user-item__phone">{{item.phone || '未填写'}}</text>
+      <text class="user-item__time">{{formatTime(item.createTime)}}</text>
+      <view class="user-item__actions" wx:if="{{item._id !== currentUserId}}">
+        <text class="user-item__toggle {{item.status === 'disabled' ? 'user-item__toggle--enable' : ''}}" bindtap="handleToggle" data-id="{{item._id}}" data-status="{{item.status === 'disabled' ? 'active' : 'disabled'}}">
+          {{item.status === 'disabled' ? '启用' : '禁用'}}
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无用户</text>
+  </view>
+</view>

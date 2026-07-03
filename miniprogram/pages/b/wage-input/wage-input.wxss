@@ -1,0 +1,190 @@
+.wage-input-page {
+  padding: 16px;
+  min-height: calc(100vh - 100px);
+}
+
+/* 即将上线 */
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 32px;
+}
+
+.coming-soon__icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.coming-soon__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.coming-soon__desc {
+  font-size: 15px;
+  color: #999;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* 表单容器 */
+.form-container {
+  padding-bottom: 40px;
+}
+
+.form-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.form-section__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-section__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-section__required {
+  color: #ff4d4f;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+/* 输入框 */
+.form-input {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.form-input--amount {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-input::placeholder {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* 金额输入包装 */
+.form-amount-wrap {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: 1px solid #eee;
+}
+
+.form-amount__symbol {
+  font-size: 20px;
+  font-weight: 600;
+  color: #12ae85;
+  margin-right: 6px;
+}
+
+.form-amount-wrap .form-input {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* 选择器 */
+.form-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 40px;
+  border: 1px solid #eee;
+}
+
+.form-picker__display {
+  flex: 1;
+  font-size: 15px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-picker__placeholder {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.form-picker__arrow {
+  font-size: 18px;
+  color: #ccc;
+  margin-left: 8px;
+}
+
+/* 多行文本 */
+.form-textarea {
+  width: 100%;
+  min-height: 80px;
+  font-size: 15px;
+  color: #333;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.form-textarea::placeholder {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* 提交按钮 */
+.form-submit {
+  margin-top: 24px;
+  padding-bottom: 40px;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: #12ae85;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 24px;
+  border: none;
+  padding: 0;
+}
+
+.submit-btn:active {
+  background: #0e8a6a;
+}
+
+.submit-btn[disabled] {
+  background: #ccc;
+  color: #fff;
+}

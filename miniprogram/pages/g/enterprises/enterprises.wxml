@@ -1,0 +1,12 @@
+<view class="enterprise-page">
+  <view class="enterprise-list" wx:if="{{list.length > 0}}">
+    <view class="enterprise-item" wx:for="{{list}}" wx:key="_id" wx:for-item="item">
+      <text class="enterprise-item__name">{{item.companyName || item.name || '未命名'}}</text>
+      <text class="enterprise-item__contact">联系人：{{item.name || '未填写'}} · {{item.phone || '未填写'}}</text>
+      <text class="enterprise-item__time">注册时间：{{formatTime(item.createTime)}}</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:else>
+    <text class="empty-state__text">暂无企业</text>
+  </view>
+</view>

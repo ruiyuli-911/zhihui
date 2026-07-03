@@ -1,0 +1,599 @@
+/* ═══════════════════════════════════════════════════════
+   智慧小职 — AI 就业助手页面样式
+   包含：消息气泡 / 岗位卡片 / 确认弹窗 / 结果卡片
+   ═══════════════════════════════════════════════════════ */
+
+page {
+  height: 100%;
+  background: #f5f7f6;
+}
+
+/* ─── 页面容器 ─── */
+.ai-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffffff 0%, #f7faf8 18%, #f4f7f5 100%);
+  color: #1e2521;
+  overflow: hidden;
+}
+
+.ai-scroll {
+  flex: 1;
+  min-height: 0;
+}
+
+.chat-list {
+  padding: 38rpx 28rpx 28rpx;
+  box-sizing: border-box;
+}
+
+/* ─── 消息行 ─── */
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.message-row--assistant {
+  justify-content: flex-start;
+}
+
+.message-row--user {
+  justify-content: flex-end;
+}
+
+/* ─── 机器人头像 ─── */
+.bot-avatar {
+  width: 74rpx;
+  height: 74rpx;
+  margin-right: 18rpx;
+  border-radius: 50%;
+  position: relative;
+  background: linear-gradient(145deg, #eef4f2, #dce9e5);
+  box-shadow: 0 8rpx 22rpx rgba(36, 72, 55, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bot-avatar__antenna {
+  position: absolute;
+  top: 3rpx;
+  width: 8rpx;
+  height: 15rpx;
+  background: #45ba83;
+  border-radius: 10rpx;
+}
+
+.bot-avatar__head {
+  width: 49rpx;
+  height: 38rpx;
+  border-radius: 15rpx;
+  background: #202d2b;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+}
+
+.bot-avatar__eye {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #66e1a0;
+  box-shadow: 0 0 8rpx #66e1a0;
+}
+
+.bot-avatar__mouth {
+  position: absolute;
+  width: 16rpx;
+  height: 7rpx;
+  bottom: 7rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 2rpx solid #67dda0;
+  border-radius: 0 0 16rpx 16rpx;
+}
+
+/* ─── 消息块（头像右侧的内容区域） ─── */
+.message-block {
+  display: flex;
+  flex-direction: column;
+  max-width: 580rpx;
+  gap: 12rpx;
+}
+
+/* ─── 气泡 ─── */
+.message-bubble {
+  max-width: 530rpx;
+  padding: 25rpx 28rpx;
+  border-radius: 24rpx;
+  box-sizing: border-box;
+  font-size: 31rpx;
+  line-height: 1.6;
+}
+
+.message-bubble--assistant {
+  background: #ffffff;
+  color: #232825;
+  border-top-left-radius: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(43, 65, 53, 0.07);
+}
+
+.message-bubble--user {
+  background: linear-gradient(135deg, #d8f8c7, #bceca9);
+  color: #1c3020;
+  border-top-right-radius: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(80, 145, 79, 0.13);
+}
+
+.message-bubble--error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-top-left-radius: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(185, 28, 28, 0.07);
+}
+
+.message-text {
+  word-break: break-word;
+}
+
+/* ─── ═══ 岗位卡片列表 ═══ ─── */
+.job-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.job-card-mini {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 24rpx 26rpx;
+  box-shadow: 0 6rpx 20rpx rgba(43, 65, 53, 0.06);
+  border: 1rpx solid #edf0ee;
+}
+
+.job-card-mini:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.job-card-mini__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.job-card-mini__title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a211e;
+}
+
+.job-card-mini__salary {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #12AE85;
+}
+
+.job-card-mini__company {
+  font-size: 26rpx;
+  color: #6b7a72;
+  margin-bottom: 6rpx;
+}
+
+.job-card-mini__meta {
+  font-size: 24rpx;
+  color: #8a9890;
+  margin-bottom: 12rpx;
+}
+
+.job-card-mini__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+/* ─── ═══ 岗位详情卡片 ═══ ─── */
+.job-detail-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  box-shadow: 0 6rpx 20rpx rgba(43, 65, 53, 0.06);
+  border: 1rpx solid #edf0ee;
+}
+
+.job-detail-card__title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a211e;
+  margin-bottom: 6rpx;
+}
+
+.job-detail-card__salary {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #12AE85;
+  margin-bottom: 10rpx;
+}
+
+.job-detail-card__company {
+  font-size: 28rpx;
+  color: #5a6b62;
+  margin-bottom: 16rpx;
+}
+
+.job-detail-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  font-size: 26rpx;
+  color: #6b7a72;
+  margin-bottom: 16rpx;
+}
+
+.job-detail-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.job-detail-card__section {
+  margin-bottom: 14rpx;
+}
+
+.job-detail-card__label {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #3a4d43;
+  margin-bottom: 6rpx;
+}
+
+.job-detail-card__text {
+  font-size: 26rpx;
+  color: #5a6b62;
+  line-height: 1.5;
+}
+
+/* ─── ═══ 标签 ─── ─── */
+.tag {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  line-height: 1.4;
+}
+
+.tag--benefit {
+  background: #ecfdf5;
+  color: #12AE85;
+  border: 1rpx solid #b8e6d0;
+}
+
+/* ─── ═══ 确认卡片 ═══ ─── */
+.confirmation-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+/* ─── ═══ 确认报名卡片（confirm_apply） ═══ ─── */
+.confirm-apply-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 24rpx 26rpx;
+  box-shadow: 0 6rpx 20rpx rgba(43, 65, 53, 0.06);
+  border: 1rpx solid #edf0ee;
+  margin-bottom: 8rpx;
+}
+
+.confirm-apply-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.confirm-apply-card__title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a211e;
+}
+
+.confirm-apply-card__salary {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #12AE85;
+}
+
+.confirm-apply-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+/* ─── ═══ 资料收集卡片（collect_info） ═══ ─── */
+.collect-info-hint {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.collect-info-hint__label {
+  font-size: 26rpx;
+  color: #6b7a72;
+}
+
+.collect-info-hint__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.tag--missing {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1rpx solid #fde68a;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.collect-info-example {
+  background: #f9fafb;
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+  border: 1rpx dashed #d0dbd4;
+}
+
+.collect-info-example__text {
+  font-size: 24rpx;
+  color: #8a9890;
+  line-height: 1.5;
+}
+
+/* ─── ═══ 结果卡片 ═══ ─── */
+.result-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  box-shadow: 0 6rpx 20rpx rgba(43, 65, 53, 0.06);
+  border: 1rpx solid #edf0ee;
+}
+
+.result-card--success {
+  border-left: 8rpx solid #12AE85;
+}
+
+.result-card--error {
+  border-left: 8rpx solid #ef4444;
+}
+
+.result-card--info {
+  border-left: 8rpx solid #3b82f6;
+}
+
+.result-card__icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  flex-shrink: 0;
+}
+
+.result-card--success .result-card__icon {
+  background: #ecfdf5;
+  color: #12AE85;
+}
+
+.result-card--error .result-card__icon {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.result-card--info .result-card__icon {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.result-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-card__title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a211e;
+  margin-bottom: 6rpx;
+}
+
+.result-card__desc {
+  display: block;
+  font-size: 26rpx;
+  color: #5a6b62;
+  line-height: 1.5;
+}
+
+/* ─── ═══ 操作按钮 ═══ ─── */
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.action-btn {
+  min-width: 160rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 24rpx;
+  border-radius: 32rpx;
+  background: #ffffff;
+  border: 1rpx solid #d0dbd4;
+  color: #12AE85;
+  font-size: 26rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+.action-btn:active {
+  background: #f0f7f2;
+}
+
+.action-btn--primary {
+  background: linear-gradient(135deg, #12AE85, #0d8f6b);
+  color: #ffffff;
+  border: none;
+}
+
+.action-btn--confirm {
+  flex: 1;
+  background: linear-gradient(135deg, #12AE85, #0d8f6b);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  font-size: 28rpx;
+}
+
+.action-btn--cancel {
+  flex: 1;
+  background: #ffffff;
+  color: #6b7a72;
+  border: 1rpx solid #d0dbd4;
+  font-size: 28rpx;
+}
+
+/* ─── 快捷问题 ─── */
+.quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin: -8rpx 0 32rpx 92rpx;
+}
+
+.quick-item {
+  padding: 16rpx 22rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  border: 1rpx solid #e4eee7;
+  color: #3d9c5b;
+  font-size: 25rpx;
+  line-height: 1;
+  box-shadow: 0 6rpx 16rpx rgba(52, 95, 70, 0.06);
+}
+
+/* ─── Loading 动画 ─── */
+.typing-bubble {
+  min-width: 100rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.typing-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #87a393;
+  animation: typing 1s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(-8rpx); opacity: 1; }
+}
+
+.bottom-anchor {
+  height: 20rpx;
+}
+
+/* ─── 输入区 ─── */
+.composer {
+  padding: 18rpx 28rpx 10rpx;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1rpx solid #edf0ee;
+}
+
+.composer__input-wrap {
+  flex: 1;
+  min-width: 0;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 48rpx;
+  background: #f4f6f5;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+
+.composer__input {
+  flex: 1;
+  min-width: 0;
+  height: 88rpx;
+  font-size: 29rpx;
+  color: #242a26;
+}
+
+.composer__mic {
+  width: 88rpx;
+  height: 88rpx;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #49b86d, #2c9550);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 20rpx rgba(46, 145, 80, 0.26);
+}
+
+.composer__mic--recording {
+  transform: scale(1.08);
+  background: #eb625e;
+  box-shadow: 0 10rpx 24rpx rgba(222, 77, 74, 0.28);
+}
+
+.composer__mic-icon {
+  color: #ffffff;
+  font-size: 40rpx;
+}
+
+.voice-tip {
+  padding: 8rpx 28rpx;
+  text-align: center;
+  background: #ffffff;
+  color: #9ca49f;
+  font-size: 24rpx;
+}
+
+.ai-footnote {
+  padding: 12rpx 0 calc(16rpx + env(safe-area-inset-bottom));
+  text-align: center;
+  background: #ffffff;
+  color: #b0b6b2;
+  font-size: 21rpx;
+}

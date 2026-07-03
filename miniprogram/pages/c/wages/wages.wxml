@@ -1,0 +1,49 @@
+<framework-page
+  title="{{pageMeta.title}}"
+  role="{{pageMeta.role}}"
+  route="{{pageMeta.route}}"
+>
+  <view class="wages-page">
+
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text class="loading-state__text">加载中...</text>
+    </view>
+
+    <!-- 云函数未就绪 - 功能即将上线 -->
+    <view class="coming-soon" wx:elif="{{!cloudReady}}">
+      <view class="coming-soon__icon">🚧</view>
+      <text class="coming-soon__title">功能即将上线</text>
+      <text class="coming-soon__desc">工资管理功能正在紧锣密鼓地开发中，</text>
+      <text class="coming-soon__desc">预计 7月7日 正式上线，敬请期待！</text>
+    </view>
+
+    <!-- 工资列表（云函数就绪且有数据） -->
+    <view class="wages-list" wx:elif="{{list.length > 0}}">
+      <view
+        class="wage-item"
+        wx:for="{{list}}"
+        wx:key="_id"
+        wx:for-item="wage"
+        bindtap="handleWageTap"
+        data-id="{{wage._id}}"
+      >
+        <view class="wage-item__top">
+          <text class="wage-item__title">{{wage.jobTitle || '未命名岗位'}}</text>
+          <text class="wage-item__status wage-item__status--{{wage.status || 'pending'}}">{{wage.statusText}}</text>
+        </view>
+        <text class="wage-item__company">{{wage.companyName || '—'}}</text>
+        <view class="wage-item__bottom">
+          <text class="wage-item__amount">{{wage.displayAmount}}</text>
+          <text class="wage-item__period">{{wage.displayPeriod || wage.displayCreateTime}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空列表（云函数就绪但无数据） -->
+    <view class="empty-state" wx:elif="{{!loading && cloudReady}}">
+      <text class="empty-state__text">暂无工资记录</text>
+    </view>
+
+  </view>
+</framework-page>
