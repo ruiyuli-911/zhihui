@@ -3,3 +3,16 @@ deploy.local.json
 *.private.key
 *.key
 dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
+# IDE
+.idea/
+*.swp
+*.swo
