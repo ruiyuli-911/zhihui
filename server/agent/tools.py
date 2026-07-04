@@ -95,11 +95,9 @@ def search_jobs(
         "recruitStatus": "recruiting",
     }
 
-    # 关键词搜索（模糊匹配标题/公司/分类）
-    # 注意：微信云数据库不支持 $or + regex 的复杂查询，
-    # 这里先按 keyword 精确匹配 title，后续可扩展
-    if keyword:
-        where["title"] = keyword  # 精确匹配标题关键词
+    # 关键词改为 Python 层模糊匹配（数据库不支持 $or+regex）
+    # where["title"] 精确匹配无法匹配"小区保安"等前缀标题，
+    # 改为拉取后做子串匹配
 
     if district:
         where["area"] = district
@@ -107,8 +105,15 @@ def search_jobs(
     # 薪资条件（微信云 DB 不支持直接的 >= 查询语法，
     # 这里先做基础查询，在 Python 层做过滤）
     try:
-        jobs_raw = db.query("jobs", where=where, limit=page_size,
-                            skip=(page - 1) * page_size)
+        # 无关键词时按时间倒序，让最新岗位排前面
+        order_field = None
+        order_dir = ""
+        if not keyword:
+            order_field = "createdAt"
+            order_dir = "desc"
+        jobs_raw = db.query("jobs", where=where, limit=page_size * 2,
+                            skip=(page - 1) * page_size,
+                            order_by=order_field, order=order_dir)
     except Exception as e:
         logger.error("数据库查询失败: %s", e)
         return {"total": 0, "jobs": [], "error": "数据库查询失败"}
@@ -116,6 +121,14 @@ def search_jobs(
     # Python 层过滤
     filtered = []
     for j in jobs_raw:
+        # 关键词模糊匹配（支持子串匹配，如"保安"匹配"小区保安"）
+        if keyword:
+            kw_lower = keyword.lower()
+            title = (j.get("title") or "").lower()
+            company = (j.get("companyName") or "").lower()
+            category = (j.get("categoryName") or "").lower()
+            if kw_lower not in title and kw_lower not in company and kw_lower not in category:
+                continue
         # 薪资过滤
         if min_salary > 0:
             s_min = j.get("salaryMin") or 0
@@ -307,28 +320,59 @@ def get_application_status(user_id: str) -> dict:
 
 @tool
 def get_user_profile(user_id: str) -> dict:
-    """获取用户的个人档案信息，包括姓名、年龄、电话、期望岗位等。"""
+    """获取用户的个人档案信息，包括姓名、年龄、电话、身份证号、期望岗位等。"""
     logger.info("get_user_profile: user_id=%s", user_id)
 
-    # 先从 accounts 查
-    accounts = db.query("accounts", where={"_id": user_id}, limit=1)
+    # 先从 accounts 查（支持 openid 和 _id 两种匹配）
+    accounts = db.query("accounts", where={"openid": user_id}, limit=1)
+    if not accounts:
+        accounts = db.query("accounts", where={"_id": user_id}, limit=1)
     account = accounts[0] if accounts else None
 
-    # 再从 jobseekers 查
-    seekers = db.query("jobseekers", where={"accountId": user_id}, limit=1)
+    # 再从 jobseekers 查（用 accountId 关联）
+    account_id = (account or {}).get("_id", user_id)
+    seekers = db.query("jobseekers", where={"accountId": account_id}, limit=1)
+    if not seekers and user_id != account_id:
+        seekers = db.query("jobseekers", where={"accountId": user_id}, limit=1)
     seeker = seekers[0] if seekers else None
 
     profile = {
         "user_id": user_id,
-        "name": (seeker or account or {}).get("name", ""),
-        "phone": (seeker or account or {}).get("phone", ""),
-        "age": (seeker or {}).get("birthYear", None),
+        "name": (account or {}).get("name", "") or (seeker or {}).get("name", ""),
+        "phone": (account or {}).get("phone", "") or (seeker or {}).get("phone", ""),
+        "age": None,
+        "gender": (seeker or {}).get("gender", None) or (account or {}).get("gender", None),
+        "idNumber": (seeker or {}).get("idNumber", "") or (account or {}).get("idNumber", ""),
         "expect_job": (seeker or {}).get("expectJob", ""),
         "expect_area": (seeker or {}).get("expectArea", ""),
     }
 
-    # 如果有 birthYear，计算年龄
-    if profile["age"]:
-        profile["age"] = datetime.now().year - profile["age"]
+    # 从身份证号计算年龄 + 性别
+    if profile.get("idNumber"):
+        id_num = profile["idNumber"]
+        if len(id_num) >= 14:
+            try:
+                by = int(id_num[6:10])
+                bm = int(id_num[10:12])
+                bd = int(id_num[12:14])
+                now = datetime.now()
+                age = now.year - by
+                if (now.month, now.day) < (bm, bd):
+                    age -= 1
+                profile["age"] = age
+            except (ValueError, IndexError):
+                pass
+        # 身份证第17位：奇男偶女
+        if not profile["gender"] and len(id_num) >= 17:
+            try:
+                profile["gender"] = "男" if int(id_num[16]) % 2 == 1 else "女"
+            except (ValueError, IndexError):
+                pass
+
+    # 如果没有身份证，从 birthYear 计算
+    if not profile["age"]:
+        birth_year = (seeker or {}).get("birthYear", None) or (account or {}).get("birthYear", None)
+        if birth_year:
+            profile["age"] = datetime.now().year - int(birth_year)
 
     return {"profile": profile}

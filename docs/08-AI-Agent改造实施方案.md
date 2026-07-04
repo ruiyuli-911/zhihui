@@ -1,4 +1,4 @@
-# 智慧小职 — AI Agent 改造实施方案
+# 智汇小玉 — AI Agent 改造实施方案
 
 > **版本**：v1.0  
 > **日期**：2026-07-03  
@@ -163,7 +163,7 @@ def get_navigation_info(address: str, user_lat: float, user_lng: float) -> dict:
 #### 系统提示词核心（prompts.py）
 
 ```
-你是智慧小职，一个面向大龄劳动者的语音就业任务助手。
+你是智汇小玉，一个面向大龄劳动者的语音就业任务助手。
 
 你的目标不是闲聊，而是帮助用户完成就业任务。
 
@@ -185,7 +185,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.chat_schemas import ChatRequest, ChatResponse
 from agent.employment_agent import EmploymentAgent
 
-app = FastAPI(title="智慧小职 - 就业服务 Agent")
+app = FastAPI(title="智汇小玉 - 就业服务 Agent")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 agent = EmploymentAgent()
@@ -208,7 +208,7 @@ async def chat(request: ChatRequest):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "智慧小职 Agent"}
+    return {"status": "ok", "service": "智汇小玉 Agent"}
 ```
 
 ---
@@ -234,7 +234,7 @@ async def health():
 | `miniprogram/pages/c/ai/ai.wxml` | **重写** | 新增 job_list / confirmation / result 模板段 |
 | `miniprogram/pages/c/ai/ai.js` | **重写** | 真实 API 调用 + 结构化消息解析 + 确认流 |
 | `miniprogram/pages/c/ai/ai.wxss` | **重写** | 岗位卡片、确认弹窗、结果卡片样式 |
-| `miniprogram/pages/c/ai/ai.json` | 微调 | 导航标题改为"智慧小职" |
+| `miniprogram/pages/c/ai/ai.json` | 微调 | 导航标题改为"智汇小玉" |
 
 #### 2.3 WXML 模板段示例
 

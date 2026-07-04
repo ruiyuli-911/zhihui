@@ -6,6 +6,7 @@
 """
 
 import time
+import json
 import logging
 from typing import Any, Optional
 
@@ -83,7 +84,7 @@ class CloudDatabaseClient:
             for key, value in where.items():
                 conditions.append(f"{key}: {repr(value)}")
 
-        cond_str = ", ".join(conditions) if conditions else "true"
+        cond_str = ", ".join(conditions) if conditions else ""
 
         order_str = ""
         if order_by:
@@ -101,7 +102,7 @@ class CloudDatabaseClient:
         result = self._request("databasequery", query)
         # 返回的 data 是 JSON 字符串列表
         raw_list = result.get("data", [])
-        return [eval(item) if isinstance(item, str) else item for item in raw_list]
+        return [json.loads(item) if isinstance(item, str) else item for item in raw_list]
 
     def get(self, collection: str, doc_id: str) -> Optional[dict]:
         """获取单条记录"""
@@ -112,7 +113,7 @@ class CloudDatabaseClient:
             if not raw_list:
                 return None
             item = raw_list[0]
-            return eval(item) if isinstance(item, str) else item
+            return json.loads(item) if isinstance(item, str) else item
         except Exception as e:
             logger.warning("获取文档失败: collection=%s, doc_id=%s, error=%s",
                            collection, doc_id, e)
@@ -141,14 +142,14 @@ class CloudDatabaseClient:
             for key, value in where.items():
                 conditions.append(f"{key}: {repr(value)}")
 
-        cond_str = ", ".join(conditions) if conditions else "true"
+        cond_str = ", ".join(conditions) if conditions else ""
         query = f"db.collection('{collection}').where({{{cond_str}}}).count()"
 
         result = self._request("databasequery", query)
         raw_list = result.get("data", [])
         if raw_list:
             item = raw_list[0]
-            item = eval(item) if isinstance(item, str) else item
+            item = json.loads(item) if isinstance(item, str) else item
             return item.get("total", 0)
         return 0
 

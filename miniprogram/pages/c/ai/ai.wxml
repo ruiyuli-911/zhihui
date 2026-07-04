@@ -69,6 +69,10 @@
                   <view class="job-card-mini__tags" wx:if="{{item.benefits && item.benefits.length > 0}}">
                     <text class="tag tag--benefit" wx:for="{{item.benefits}}" wx:key="*this">{{item}}</text>
                   </view>
+                  <view class="job-card-mini__reason" wx:if="{{item.recommend_reason}}">
+                    <text class="job-card-mini__reason-icon">💡</text>
+                    <text class="job-card-mini__reason-text">{{item.recommend_reason}}</text>
+                  </view>
                 </view>
               </view>
               <view class="card-actions" wx:if="{{item.actions && item.actions.length > 0}}">
@@ -77,6 +81,8 @@
                   wx:for="{{item.actions}}"
                   wx:key="text"
                   data-action="{{item}}"
+                  data-type="{{item.type}}"
+                  data-url="{{item.data.url}}"
                   bindtap="handleAction"
                 >{{item.text}}</button>
               </view>
@@ -122,6 +128,8 @@
                   wx:for="{{item.actions}}"
                   wx:key="text"
                   data-action="{{item}}"
+                  data-type="{{item.type}}"
+                  data-url="{{item.data.url}}"
                   bindtap="handleAction"
                 >{{item.text}}</button>
               </view>
@@ -129,8 +137,8 @@
           </view>
         </block>
 
-        <!-- ─── 确认报名卡片（confirm_apply / confirmation） ─── -->
-        <block wx:elif="{{item.role === 'assistant' && (item.type === 'confirmation' || item.type === 'confirm_apply')}}">
+        <!-- ─── 确认报名卡片（confirm_apply / confirmation / apply_confirm） ─── -->
+        <block wx:elif="{{item.role === 'assistant' && (item.type === 'confirmation' || item.type === 'confirm_apply' || item.type === 'apply_confirm')}}">
           <view class="message-row message-row--assistant">
             <view class="bot-avatar">
               <view class="bot-avatar__antenna"></view>
@@ -197,7 +205,7 @@
         </block>
 
         <!-- ─── 结果卡片 ─── -->
-        <view wx:elif="{{item.role === 'assistant' && item.type === 'result'}}" class="message-row message-row--assistant">
+        <view wx:elif="{{item.role === 'assistant' && (item.type === 'result' || item.type === 'application_success')}}" class="message-row message-row--assistant">
           <view class="bot-avatar">
             <view class="bot-avatar__antenna"></view>
             <view class="bot-avatar__head">
@@ -224,6 +232,8 @@
                 wx:for="{{item.actions}}"
                 wx:key="text"
                 data-action="{{item}}"
+                data-type="{{item.type}}"
+                data-url="{{item.data.url}}"
                 bindtap="handleAction"
               >{{item.text}}</button>
             </view>

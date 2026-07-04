@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   智慧小职 — AI 就业助手页面样式
+   智汇小玉 — AI 就业助手页面样式
    包含：消息气泡 / 岗位卡片 / 确认弹窗 / 结果卡片
    ═══════════════════════════════════════════════════════ */
 
@@ -197,6 +197,28 @@ page {
   display: flex;
   flex-wrap: wrap;
   gap: 10rpx;
+}
+
+/* ─── 推荐理由 ─── */
+.job-card-mini__reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 6rpx;
+  margin-top: 12rpx;
+  padding: 12rpx 14rpx;
+  background: #f0fdf4;
+  border-radius: 12rpx;
+}
+
+.job-card-mini__reason-icon {
+  font-size: 22rpx;
+  flex-shrink: 0;
+}
+
+.job-card-mini__reason-text {
+  font-size: 22rpx;
+  color: #3d9c5b;
+  line-height: 1.4;
 }
 
 /* ─── ═══ 岗位详情卡片 ═══ ─── */

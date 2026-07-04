@@ -1,5 +1,5 @@
 """
-智慧小职 — 全局配置
+智汇小玉 — 全局配置
 从环境变量或 .env 文件加载配置
 """
 
@@ -15,15 +15,12 @@ class Settings:
     WX_SECRET: str = os.getenv("WX_SECRET", "")
     WX_ENV_ID: str = os.getenv("WX_ENV_ID", "")
 
-    # DeepSeek API
-    DEEPSEEK_API_KEY: str = os.getenv("DEEPSEEK_API_KEY", "")
-    DEEPSEEK_API_URL: str = os.getenv(
-        "DEEPSEEK_API_URL",
-        "https://api.deepseek.com/chat/completions",
-    )
-
-    # LLM 提供商
-    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "deepseek")
+    # vivo AI 大模型
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "vivo")
+    VIVO_APP_KEY: str = os.getenv("VIVO_APP_KEY", "")
+    VIVO_BASE_URL: str = os.getenv("VIVO_BASE_URL", "https://api-ai.vivo.com.cn/v1")
+    VIVO_MODEL: str = os.getenv("VIVO_MODEL", "Volc-DeepSeek-V3.2")
+    VIVO_TIMEOUT: int = int(os.getenv("VIVO_TIMEOUT", "15"))
 
     # 服务
     SERVER_PORT: int = int(os.getenv("SERVER_PORT", "8000"))

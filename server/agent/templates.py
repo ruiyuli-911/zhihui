@@ -1,5 +1,5 @@
 """
-智慧小职 — 用户友好回复模板
+智汇小玉 — 用户友好回复模板
 
 所有用户可见的文字从这里输出，保证：
 1. 口语化、简短
@@ -12,7 +12,7 @@ from typing import Optional
 
 
 def greeting() -> str:
-    return "您好！我是智慧小职。想找什么样的工作？可以直接告诉我。"
+    return "您好！我是智汇小玉。想找什么样的工作？可以直接告诉我。"
 
 
 def help_text() -> str:
@@ -124,7 +124,7 @@ def small_talk_reply(text: str) -> str:
     if any(w in text for w in ["无聊", "没意思"]):
         return "要不我帮您看看有什么工作？说「找保安工作」就行。"
     # 默认闲聊回复
-    return "好的。您需要找工作、查岗位或者报名，随时跟我说。"
+    return "好的。有需要找工作、查岗位的事，随时跟我说。"
 
 
 def already_applied(job_title: str = "") -> str:

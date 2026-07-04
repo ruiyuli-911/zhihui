@@ -1,5 +1,5 @@
 """
-智慧小职 — 三层意图路由
+智汇小玉 — 三层意图路由
 
 第一层：强规则拦截（精确匹配，不出错）
 第二层：轻量语义分类（关键词 + 规则）
@@ -24,8 +24,9 @@ JOB_KEYWORDS = [
     "电工", "焊工", "叉车", "库管",
     "服务员", "厨师", "洗碗", "面点",
     "营业员", "收银",
-    "护理", "护工",
-    "工作", "岗位", "活",
+    "护理", "护工", "采摘",
+    "农活", "种地", "养殖",
+    "工作", "岗位", "活", "场子", "厂子",
 ]
 
 # 政策/知识关键词
@@ -74,7 +75,18 @@ def detect(text: str) -> dict:
     m = re.search(r'(?:我叫|我是|姓)(\S{1,6})(?:[，,\s]|今年|电话|$)', text)
     if m:
         return {"intent": "provide_info", "params": {"field": "name", "value": m.group(1)}, "layer": 1}
-    m = re.search(r'(?:今年|年龄|岁数)?(\d{1,3})\s*岁', text)
+    m = re.search(r'(?:今年|年龄|岁数|都)?(\d{1,3})\s*(?:岁|岁了)', text)
+    if m:
+        age = int(m.group(1))
+        if 16 <= age <= 80:
+            return {"intent": "provide_info", "params": {"field": "age", "value": age}, "layer": 1}
+    # 口语省略"岁"：我今年62 / 我62了
+    m = re.search(r'(?:今年|年龄)(\d{1,3})(?:\s*$|[\s,，])', text)
+    if m:
+        age = int(m.group(1))
+        if 16 <= age <= 80:
+            return {"intent": "provide_info", "params": {"field": "age", "value": age}, "layer": 1}
+    m = re.search(r'(?:今年|都)?(\d{2})\s*了', text)
     if m:
         age = int(m.group(1))
         if 16 <= age <= 80:
@@ -102,9 +114,23 @@ def detect(text: str) -> dict:
 
     # ──────── 第二层：语义分类 ────────
 
-    # 2.1 搜索岗位
-    if "找" in text and any(kw in text for kw in JOB_KEYWORDS):
+    # 2.0 推荐岗位（有个人信息时使用）
+    if any(w in text for w in ["推荐", "适合", "合适"]) and \
+       any(kw in text for kw in ["我", "岗位", "工作"]):
+        return {"intent": "recommend_job", "params": {"text": text}, "layer": 2}
+
+    # 2.1 搜索岗位——但"室内+工作"是环境偏好，非搜索
+    ENV_WORDS = {"室内", "室外", "户外", "屋里", "露天", "厂房", "车间"}
+    SEARCH_TRIGGERS = {"找", "搜", "查", "有", "要"}
+    if any(t in text for t in SEARCH_TRIGGERS) or any(kw in text for kw in JOB_KEYWORDS):
         matched = _match_keywords(text, JOB_KEYWORDS)
+        if not matched:
+            matched = []
+        non_generic = set(matched) - {"工作", "岗位", "活", "场子", "厂子"}
+        if not non_generic or non_generic.issubset(ENV_WORDS):
+            if any(w in text for w in ENV_WORDS):
+                return {"intent": "provide_info", "params": {"field": "work_environment", "text": text}, "layer": 2}
+            return {"intent": "search_job", "params": {"keywords": matched}, "layer": 2}
         return {"intent": "search_job", "params": {"keywords": matched}, "layer": 2}
     if any(kw in text for kw in ["搜", "查岗位", "推荐", "有什么"]) and \
        any(kw in text for kw in JOB_KEYWORDS):
