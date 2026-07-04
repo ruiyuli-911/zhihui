@@ -86,6 +86,7 @@ const DEFAULT_CATEGORIES = [
 ]
 
 const PAGES = {
+  C_LOGIN: '/pages/c/login/login',
   C_HOME: '/pages/c/home/home',
   C_JOBS: '/pages/c/jobs/jobs',
   C_JOB_DETAIL: '/pages/c/job-detail/job-detail',

@@ -12,8 +12,14 @@
 
 let msgId = 100
 
-/** 后端 API 地址（开发时用本地地址，微信开发者工具须勾选"不校验合法域名"） */
-const API_BASE = 'http://127.0.0.1:8002'
+/**
+ * 后端 API 地址
+ * 开发时： http://192.168.x.x:8002（改成你电脑的局域网 IP）
+ * 上线后： https://your-domain.com
+ * 通过全局配置切换，避免改代码
+ */
+const app = getApp()
+const API_BASE = app.globalData?.API_BASE || 'http://127.0.0.1:8002'
 
 Page({
   data: {

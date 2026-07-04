@@ -1,4 +1,4 @@
-const { STORAGE_KEYS, DEFAULT_ENV_ID } = require('./utils/constants')
+const { STORAGE_KEYS, DEFAULT_ENV_ID, PAGES } = require('./utils/constants')
 const { normalizeAccountInfo, resolvePrimaryRole } = require('./utils/auth')
 
 App({
@@ -6,7 +6,12 @@ App({
     this.initCloud()
     this.initSystemInfo()
     this.restoreSession()
+    this.ensureEntryPage()
     this.checkUpdate()
+  },
+
+  onShow() {
+    this.ensureEntryPage()
   },
 
   globalData: {
@@ -14,7 +19,13 @@ App({
     userRole: null,
     systemInfo: null,
     safeArea: null,
-    envId: DEFAULT_ENV_ID
+    envId: DEFAULT_ENV_ID,
+    /**
+     * API 地址
+     * 开发调试：http://192.168.x.x:8002（改成你电脑IP）
+     * 正式上线：https://your-domain.com（部署后修改）
+     */
+    API_BASE: 'http://127.0.0.1:8002'
   },
 
   initCloud() {
@@ -56,6 +67,24 @@ App({
       this.globalData.accountInfo = accountInfo
       this.globalData.userRole = resolvePrimaryRole(accountInfo, '') || null
     }
+  },
+
+  ensureEntryPage() {
+    const isLoggedIn = Boolean(this.globalData.accountInfo && this.globalData.accountInfo._id)
+    if (isLoggedIn) {
+      return
+    }
+
+    const pages = getCurrentPages()
+    const currentRoute = pages.length ? `/${pages[pages.length - 1].route}` : ''
+
+    if (!currentRoute || currentRoute === PAGES.C_LOGIN) {
+      return
+    }
+
+    setTimeout(() => {
+      wx.reLaunch({ url: PAGES.C_LOGIN })
+    }, 0)
   },
 
   checkLogin() {
